@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.warehouseProject.daos.IProductCategoryDAO">
+    <resultMap id="ProductCategoryMap" type="ProductCategory" autoMapping="false">
+        <id property="id" column="id"/>
+        <collection property="orders" ofType="Order"  resultMap="com.solvd.warehouseProject.daos.IOrderDAO.OrderMap" columnPrefix="orders_"/>
+    </resultMap>
+</mapper>
