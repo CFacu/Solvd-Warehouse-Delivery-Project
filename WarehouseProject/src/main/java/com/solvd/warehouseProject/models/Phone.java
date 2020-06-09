@@ -2,15 +2,14 @@ package com.solvd.warehouseProject.models;
 
 public class Phone {
     private Long id;
-    private Integer number;
-    private String type;
+    private String number;
+    private PhoneType type;
 
     public Phone() {
     }
 
-    public Phone(Integer number, String type) {
+    public Phone(String number) {
         this.number = number;
-        this.type = type;
     }
 
     public Long getId() {
@@ -21,19 +20,20 @@ public class Phone {
         this.id = id;
     }
 
-    public Integer getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 
-    public String getType() {
-        return type;
-    }
+	public PhoneType getType() {
+		return type;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public void setType(PhoneType type) {
+		this.type = type;
+	}
+
 }

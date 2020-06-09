@@ -1,17 +1,17 @@
 package com.solvd.warehouseProject.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Order {
     private Long id;
-    private Date date;
+    private LocalDate date;
     private List<OrderDetail> orderDetails;
 
     public Order() {
     }
 
-    public Order(Date date, List<OrderDetail> orderDetails) {
+    public Order(LocalDate date, List<OrderDetail> orderDetails) {
         this.date = date;
         this.orderDetails = orderDetails;
     }
@@ -24,11 +24,11 @@ public class Order {
         this.id = id;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

@@ -1,20 +1,22 @@
 package com.solvd.warehouseProject.models;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class Driver {
     private Long id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private Integer age;
-    private Date birthday;
+    private LocalDate birthday;
     private List<Phone> phones;
 
     public Driver() {
     }
 
-    public Driver(String name, Integer age, Date birthday, List<Phone> phones) {
-        this.name = name;
+    public Driver(String firstName, String lastName, Integer age, LocalDate birthday, List<Phone> phones) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
         this.birthday = birthday;
         this.phones = phones;
@@ -28,13 +30,21 @@ public class Driver {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
+    public String getFirstName() {
+		return firstName;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
     public Integer getAge() {
         return age;
@@ -44,11 +54,11 @@ public class Driver {
         this.age = age;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

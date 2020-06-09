@@ -4,13 +4,14 @@ import java.util.List;
 
 public class Route {
     private Long id;
-    private List<Order> orders;
+    private Order order;
+    private List<Warehouse> warehouses;
 
     public Route() {
     }
 
-    public Route(List<Order> orders) {
-        this.orders = orders;
+    public Route(Order order) {
+        this.order = order;
     }
 
     public Long getId() {
@@ -21,11 +22,20 @@ public class Route {
         this.id = id;
     }
 
-    public List<Order> getOrders() {
-        return orders;
-    }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public List<Warehouse> getWarehouses() {
+		return warehouses;
+	}
+
+	public void setWarehouses(List<Warehouse> warehouses) {
+		this.warehouses = warehouses;
+	}
 }

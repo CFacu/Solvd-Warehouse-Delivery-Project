@@ -5,12 +5,12 @@ public class OrderDetail {
     private Product product;
     private Integer quantity;
     private Double totalVolume;
+    private Double totalPrice;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(Double totalVolume, Producto product, Integer quantity) {
-        this.totalVolume = totalVolume;
+    public OrderDetail(Product product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
     }
@@ -46,4 +46,12 @@ public class OrderDetail {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
+
+	public Double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 }
