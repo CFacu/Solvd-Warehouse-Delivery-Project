@@ -3,8 +3,7 @@ package com.solvd.warehouseProject.models;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Order {
-    private Long id;
+public class Order extends AbstractEntity{
     private LocalDate date;
     private List<OrderDetail> orderDetails;
 
@@ -14,14 +13,6 @@ public class Order {
     public Order(LocalDate date, List<OrderDetail> orderDetails) {
         this.date = date;
         this.orderDetails = orderDetails;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public LocalDate getDate() {

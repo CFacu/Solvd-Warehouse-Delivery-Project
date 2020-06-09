@@ -2,8 +2,7 @@ package com.solvd.warehouseProject.models;
 
 import java.time.LocalDate;
 
-public class Product {
-    private Long id;
+public class Product extends AbstractEntity{
     private String name;
     private String description;
     private Double volume;
@@ -21,14 +20,6 @@ public class Product {
         this.dueDate = dueDate;
         this.price = price;
         this.category = category;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

@@ -3,8 +3,7 @@ package com.solvd.warehouseProject.models;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Driver {
-    private Long id;
+public class Driver extends AbstractEntity{
     private String firstName;
     private String lastName;
     private Integer age;
@@ -20,14 +19,6 @@ public class Driver {
         this.age = age;
         this.birthday = birthday;
         this.phones = phones;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {

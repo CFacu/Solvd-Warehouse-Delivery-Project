@@ -2,8 +2,7 @@ package com.solvd.warehouseProject.models;
 
 import java.util.List;
 
-public class Route {
-    private Long id;
+public class Route extends AbstractEntity{
     private Order order;
     private List<Warehouse> warehouses;
 
@@ -13,15 +12,6 @@ public class Route {
     public Route(Order order) {
         this.order = order;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 
 	public Order getOrder() {
 		return order;

@@ -1,7 +1,6 @@
 package com.solvd.warehouseProject.models;
 
-public class Phone {
-    private Long id;
+public class Phone extends AbstractEntity{
     private String number;
     private PhoneType type;
 
@@ -10,14 +9,6 @@ public class Phone {
 
     public Phone(String number) {
         this.number = number;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNumber() {
