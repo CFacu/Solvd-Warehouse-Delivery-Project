@@ -1,7 +1,6 @@
 package com.solvd.warehouseProject.models;
 
-public class Location {
-    private Long id;
+public class Location extends AbstractEntity{
     private String street;
     private String number;
     private String code;
@@ -16,14 +15,6 @@ public class Location {
         this.code = code;
         this.warehouse = warehouse;
     }
-
-    public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getStreet() {
         return street;

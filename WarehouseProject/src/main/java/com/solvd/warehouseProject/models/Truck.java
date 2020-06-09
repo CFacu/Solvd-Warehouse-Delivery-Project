@@ -2,8 +2,7 @@ package com.solvd.warehouseProject.models;
 
 import java.util.List;
 
-public class Truck {
-    private Long id;
+public class Truck extends AbstractEntity{
     private Double capacity;
     private List<Driver> drivers;
     private List<Order> orders;
@@ -15,14 +14,6 @@ public class Truck {
         this.capacity = capacity;
         this.drivers = drivers;
         this.orders = orders;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Double getCapacity() {

@@ -1,7 +1,6 @@
 package com.solvd.warehouseProject.models;
 
-public class OrderDetail {
-    private Long id;
+public class OrderDetail extends AbstractEntity{
     private Product product;
     private Integer quantity;
     private Double totalVolume;
@@ -13,14 +12,6 @@ public class OrderDetail {
     public OrderDetail(Product product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Double getTotalVolume() {

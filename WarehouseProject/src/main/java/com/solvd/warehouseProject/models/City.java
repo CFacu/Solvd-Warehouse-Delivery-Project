@@ -2,8 +2,7 @@ package com.solvd.warehouseProject.models;
 
 import java.util.List;
 
-public class City {
-    private Long id;
+public class City extends AbstractEntity{
     private String name;
     private List<Location> locations;
 
@@ -13,14 +12,6 @@ public class City {
     public City(String name, List<Location> locations) {
         this.name = name;
         this.locations = locations;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
