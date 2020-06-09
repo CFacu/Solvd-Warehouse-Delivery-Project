@@ -6,6 +6,7 @@
     <resultMap id="ProductCategoryMap" type="ProductCategory" autoMapping="false">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
+        <result property="distanceFromCompany" column="distance_from_company"/>
         <collection property="orderDetails" ofType="OrderDetail"  resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailMap" columnPrefix="order_details_"/>
     </resultMap>
 </mapper>
