@@ -10,18 +10,18 @@ public class Product {
     private Double volume;
     private Date dueDate;
     private Double price;
-    private List<OrderDetail> orderDetails;
+    private ProductCategory category;
 
     public Product() {
     }
 
-    public Product(String name, String description, Double volume, Date dueDate, Double price, List<OrderDetail> orderDetails) {
+    public Product(String name, String description, Double volume, Date dueDate, Double price, ProductCategory category) {
         this.name = name;
         this.description = description;
         this.volume = volume;
         this.dueDate = dueDate;
         this.price = price;
-        this.orderDetails = orderDetails;
+        this.category = category;
     }
 
     public Long getId() {
@@ -72,11 +72,11 @@ public class Product {
         this.price = price;
     }
 
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
+    public ProductCategory getProductCategory() {
+        return category;
     }
 
-    public void setOrderDetails(List<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
+    public void setProductCategory(ProductCategory category) {
+        this.category = category;
     }
 }
