@@ -1,21 +1,20 @@
 package com.solvd.warehouseProject.models;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 public class Product {
     private Long id;
     private String name;
     private String description;
     private Double volume;
-    private Date dueDate;
+    private LocalDate dueDate;
     private Double price;
     private ProductCategory category;
 
     public Product() {
     }
 
-    public Product(String name, String description, Double volume, Date dueDate, Double price, ProductCategory category) {
+    public Product(String name, String description, Double volume, LocalDate dueDate, Double price, ProductCategory category) {
         this.name = name;
         this.description = description;
         this.volume = volume;
@@ -56,11 +55,11 @@ public class Product {
         this.volume = volume;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(Date dueDate) {
+    public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 

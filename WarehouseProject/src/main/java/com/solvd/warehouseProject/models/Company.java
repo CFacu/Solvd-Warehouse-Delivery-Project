@@ -29,4 +29,12 @@ public class Company {
     public void setName(String name) {
         this.name = name;
     }
+
+	public List<Truck> getTrucks() {
+		return trucks;
+	}
+
+	public void setTrucks(List<Truck> trucks) {
+		this.trucks = trucks;
+	}
 }

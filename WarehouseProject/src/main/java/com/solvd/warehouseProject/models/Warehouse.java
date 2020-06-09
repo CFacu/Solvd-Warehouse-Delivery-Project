@@ -5,6 +5,7 @@ import java.util.List;
 public class Warehouse {
     private Long id;
     private String name;
+    private Double capacity;
     private List<OrderDetail> orderDetails;
 
     public Warehouse() {
@@ -12,6 +13,12 @@ public class Warehouse {
 
     public Warehouse(String name, List<OrderDetail> orderDetails) {
         this.name = name;
+        this.orderDetails = orderDetails;
+    }
+    
+    public Warehouse(String name, Double capacity, List<OrderDetail> orderDetails) {
+        this.name = name;
+        this.capacity = capacity;
         this.orderDetails = orderDetails;
     }
 
@@ -31,7 +38,15 @@ public class Warehouse {
         this.name = name;
     }
 
-    public List<OrderDetail> getOrderDetails() {
+    public Double getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(Double capacity) {
+		this.capacity = capacity;
+	}
+
+	public List<OrderDetail> getOrderDetails() {
         return orderDetails;
     }
 
