@@ -28,4 +28,13 @@ public class Route extends AbstractEntity{
 	public void setWarehouses(List<Warehouse> warehouses) {
 		this.warehouses = warehouses;
 	}
+
+	public Warehouse getNextWarehouse(Warehouse warehouse) {
+    	if (warehouses.contains(warehouse)) {
+    		return warehouses.get(warehouses.indexOf(warehouse) + 1);
+		} else {
+    		//Throw NoNextWarehouseException;
+			return null;
+		}
+	}
 }

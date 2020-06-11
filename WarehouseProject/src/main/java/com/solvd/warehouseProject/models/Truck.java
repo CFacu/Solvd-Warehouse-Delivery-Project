@@ -1,5 +1,7 @@
 package com.solvd.warehouseProject.models;
 
+import com.solvd.warehouseProject.exceptions.OrderVolumeExceededException;
+
 import java.util.List;
 
 public class Truck extends AbstractEntity{
@@ -39,4 +41,15 @@ public class Truck extends AbstractEntity{
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
+
+    public void addOrder(Order order) throws OrderVolumeExceededException {
+        order.calculateTotalVolume();
+        if (order.getTotalVolume() > capacity) {
+            orders.add(order);
+        } else {
+            throw new OrderVolumeExceededException("The total volume of the order exceed the truck's capacity.");
+        }
+    }
+
+
 }
