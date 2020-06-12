@@ -44,7 +44,7 @@ public class Truck extends AbstractEntity{
 
     public void addOrder(Order order) throws OrderVolumeExceededException {
         order.calculateTotalVolume();
-        if (order.getTotalVolume() > capacity) {
+        if (order.getTotalVolume() <= capacity) {
             orders.add(order);
         } else {
             throw new OrderVolumeExceededException("The total volume of the order exceed the truck's capacity.");
