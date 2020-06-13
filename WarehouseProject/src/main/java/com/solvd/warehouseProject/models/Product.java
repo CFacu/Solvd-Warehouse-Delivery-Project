@@ -9,6 +9,7 @@ public class Product extends AbstractEntity{
     private LocalDate dueDate;
     private Double price;
     private ProductCategory category;
+    private Integer daysUntilDueDate;
 
     public Product() {
     }
@@ -66,7 +67,15 @@ public class Product extends AbstractEntity{
         return category;
     }
 
-    public void setProductCategory(ProductCategory category) {
-        this.category = category;
-    }
+	public void setCategory(ProductCategory category) {
+		this.category = category;
+	}
+
+	public Integer getDaysUntilDueDate() {
+		return daysUntilDueDate;
+	}
+
+	public void setDaysUntilDueDate(Integer daysUntilDueDate) {
+		this.daysUntilDueDate = daysUntilDueDate;
+	}
 }
