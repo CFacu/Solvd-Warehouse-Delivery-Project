@@ -1,26 +1,45 @@
 package com.solvd.warehouseProject.models;
 
-import java.util.HashMap;
 import java.util.List;
 
+//removed distance from company, added nextWarehouse, daysToNextWarehouse
 public class Warehouse extends AbstractEntity{
     private String name;
     private Double totalCapacity;
     private Double availableCapacity;
-    private Integer distanceFromCompany;
     private List<OrderDetail> orderDetails;
-    private HashMap<Warehouse, Integer> distances;
+    private Warehouse nextWarehouse;
+    private Integer daysToNextWarehouse;
 
     public Warehouse() {
     }
     
-    public Warehouse(String name, Double totalCapacity, Integer distanceFromCompany, List<OrderDetail> orderDetails, HashMap<Warehouse, Integer> distances){
+    public Warehouse(String name, Double totalCapacity, Double availableCapacity){
+        this.name = name;
+        this.totalCapacity = totalCapacity;
+        this.availableCapacity = availableCapacity;
+    }
+    
+    public Warehouse(String name, Double totalCapacity, List<OrderDetail> orderDetails){
         this.name = name;
         this.totalCapacity = totalCapacity;
         this.availableCapacity = totalCapacity;
-        this.distanceFromCompany = distanceFromCompany;
         this.orderDetails = orderDetails;
-        this.distances = distances;
+    }
+    
+    public Warehouse(String name, Double totalCapacity, Double availableCapacity, List<OrderDetail> orderDetails){
+        this.name = name;
+        this.totalCapacity = totalCapacity;
+        this.availableCapacity = availableCapacity;
+        this.orderDetails = orderDetails;
+    }
+    
+    public Warehouse(String name, Double totalCapacity, Double availableCapacity, Warehouse nextWarehouse, Integer daysToNextWarehouse){
+        this.name = name;
+        this.totalCapacity = totalCapacity;
+        this.availableCapacity = availableCapacity;
+        this.nextWarehouse = nextWarehouse;
+        this.daysToNextWarehouse = daysToNextWarehouse;
     }
 
     public String getName() {
@@ -55,19 +74,20 @@ public class Warehouse extends AbstractEntity{
         this.orderDetails = orderDetails;
     }
 
-    public Integer getDistanceFromCompany() {
-        return distanceFromCompany;
-    }
+    public Warehouse getNextWarehouse() {
+		return nextWarehouse;
+	}
 
-    public void setDistanceFromCompany(Integer distanceFromCompany) {
-        this.distanceFromCompany = distanceFromCompany;
-    }
+	public void setNextWarehouse(Warehouse nextWarehouse) {
+		this.nextWarehouse = nextWarehouse;
+	}
 
-    public HashMap<Warehouse, Integer> getDistances() {
-        return distances;
-    }
+	public Integer getDaysToNextWarehouse() {
+		return daysToNextWarehouse;
+	}
 
-    public void setDistances(HashMap<Warehouse, Integer> distances) {
-        this.distances = distances;
-    }
+	public void setDaysToNextWarehouse(Integer daysToNextWarehouse) {
+		this.daysToNextWarehouse = daysToNextWarehouse;
+	}
+
 }

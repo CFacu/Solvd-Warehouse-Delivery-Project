@@ -1,17 +1,24 @@
 package com.solvd.warehouseProject.models;
 
-public class OrderDetail extends AbstractEntity{
+//added deliveredVolume, could also put deliveredQuantity, but that would require some more calculations
+public class OrderDetail extends AbstractEntity {
     private Product product;
     private Integer quantity;
     private Double subtotalVolume;
     private Double subtotalPrice;
+    private Double volumeToDeliver;
+
 
     public OrderDetail() {
+    	this.volumeToDeliver = 0.0;
     }
 
     public OrderDetail(Product product, Integer quantity) {
         this.product = product;
         this.quantity = quantity;
+        this.subtotalVolume = this.getProduct().getVolume() * this.quantity;
+        this.subtotalPrice = this.getProduct().getPrice() * this.quantity;
+        this.volumeToDeliver = this.subtotalVolume;
     }
 
     public Double getSubtotalVolume() {
@@ -44,6 +51,14 @@ public class OrderDetail extends AbstractEntity{
 
 	public void setSubtotalPrice(Double subtotalPrice) {
 		this.subtotalPrice = subtotalPrice;
+	}
+
+	public Double getVolumeToDeliver() {
+		return volumeToDeliver;
+	}
+
+	public void setVolumeToDeliver(Double volumeToDeliver) {
+		this.volumeToDeliver = volumeToDeliver;
 	}
 
 	public void calculateSubtotalPrice() {
