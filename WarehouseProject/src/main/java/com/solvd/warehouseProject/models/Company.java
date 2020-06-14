@@ -69,8 +69,6 @@ public class Company extends AbstractEntity{
 		this.daysToClosestWarehouse = daysToClosestWarehouse;
 	}
 
-	
-		
 	public void deliverOrder(Truck truck, Order order) {
         if (trucks.contains(truck)) {
         	if (truck.getOrders().contains(order)) {

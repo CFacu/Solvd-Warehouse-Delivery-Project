@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Trucks` (
   `capacity` DOUBLE NOT NULL,
   `companies_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_Trucks_Companies1_idx` (`companies_id` ASC) VISIBLE,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `fk_Trucks_Companies1_idx` (`companies_id` ASC),
   CONSTRAINT `fk_Trucks_Companies1`
     FOREIGN KEY (`companies_id`)
     REFERENCES `Warehouse_Project`.`Companies` (`id`)
@@ -74,7 +74,7 @@ DROP TABLE IF EXISTS `Warehouse_Project`.`Routes` ;
 CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Routes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB
 COMMENT = '	';
 
@@ -92,9 +92,9 @@ CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Orders` (
   `routes_id` INT NOT NULL,
   `trucks_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `idOrders_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_Orders_Routes1_idx` (`routes_id` ASC) VISIBLE,
-  INDEX `fk_Orders_Trucks1_idx` (`trucks_id` ASC) VISIBLE,
+  UNIQUE INDEX `idOrders_UNIQUE` (`id` ASC),
+  INDEX `fk_Orders_Routes1_idx` (`routes_id` ASC),
+  INDEX `fk_Orders_Trucks1_idx` (`trucks_id` ASC),
   CONSTRAINT `fk_Orders_Routes1`
     FOREIGN KEY (`routes_id`)
     REFERENCES `Warehouse_Project`.`Routes` (`id`)
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Product_Categories` (
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
 
 
@@ -136,8 +136,8 @@ CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Products` (
   `price` DOUBLE NOT NULL,
   `product_categories_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_Products_produc_categories1_idx` (`product_categories_id` ASC) VISIBLE,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `fk_Products_produc_categories1_idx` (`product_categories_id` ASC),
   CONSTRAINT `fk_Products_Product_Categories1`
     FOREIGN KEY (`product_categories_id`)
     REFERENCES `Warehouse_Project`.`Product_Categories` (`id`)
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Cities` (
   `name` VARCHAR(45) NOT NULL,
   `countries_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Cities_Countries1_idx` (`countries_id` ASC) VISIBLE,
+  INDEX `fk_Cities_Countries1_idx` (`countries_id` ASC),
   CONSTRAINT `fk_Cities_Countries1`
     FOREIGN KEY (`countries_id`)
     REFERENCES `Warehouse_Project`.`Countries` (`id`)
@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Locations` (
   `code` VARCHAR(45) NOT NULL,
   `cities_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Locations_Cities1_idx` (`cities_id` ASC) VISIBLE,
+  INDEX `fk_Locations_Cities1_idx` (`cities_id` ASC),
   CONSTRAINT `fk_Locations_Cities1`
     FOREIGN KEY (`cities_id`)
     REFERENCES `Warehouse_Project`.`Cities` (`id`)
@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Warehouses` (
   `current_capacity` DOUBLE NOT NULL,
   `locations_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_Warehouses_Locations1_idx` (`locations_id` ASC) VISIBLE,
+  INDEX `fk_Warehouses_Locations1_idx` (`locations_id` ASC),
   CONSTRAINT `fk_Warehouses_Locations1`
     FOREIGN KEY (`locations_id`)
     REFERENCES `Warehouse_Project`.`Locations` (`id`)
@@ -234,10 +234,10 @@ CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Orders_Details` (
   `orders_id` INT NOT NULL,
   `warehouses_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_Orders_Details_Products1_idx` (`products_id` ASC) VISIBLE,
-  INDEX `fk_Orders_Details_Orders1_idx` (`orders_id` ASC) VISIBLE,
-  INDEX `fk_Orders_Details_Warehouses1_idx` (`warehouses_id` ASC) VISIBLE,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `fk_Orders_Details_Products1_idx` (`products_id` ASC),
+  INDEX `fk_Orders_Details_Orders1_idx` (`orders_id` ASC),
+  INDEX `fk_Orders_Details_Warehouses1_idx` (`warehouses_id` ASC),
   CONSTRAINT `fk_Orders_Details_Products1`
     FOREIGN KEY (`products_id`)
     REFERENCES `Warehouse_Project`.`Products` (`id`)
@@ -265,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Phone_Types` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
 
 
@@ -280,9 +280,9 @@ CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Phones` (
   `type_id` INT UNSIGNED NOT NULL,
   `drivers_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_Phones_Drivers1_idx` (`drivers_id` ASC) VISIBLE,
-  INDEX `fk_Phones_Types_idx` (`type_id` ASC) VISIBLE,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `fk_Phones_Drivers1_idx` (`drivers_id` ASC),
+  INDEX `fk_Phones_Types_idx` (`type_id` ASC),
   CONSTRAINT `fk_Phones_Drivers1`
     FOREIGN KEY (`drivers_id`)
     REFERENCES `Warehouse_Project`.`Drivers` (`id`)
@@ -304,8 +304,8 @@ DROP TABLE IF EXISTS `Warehouse_Project`.`Trucks_Drivers` ;
 CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Trucks_Drivers` (
   `truck_id` INT UNSIGNED NOT NULL,
   `driver_id` INT UNSIGNED NOT NULL,
-  INDEX `pk_TD_Trucks_idx` (`truck_id` ASC) VISIBLE,
-  INDEX `pk_TD_Drivers_idx` (`driver_id` ASC) VISIBLE,
+  INDEX `pk_TD_Trucks_idx` (`truck_id` ASC),
+  INDEX `pk_TD_Drivers_idx` (`driver_id` ASC),
   PRIMARY KEY (`truck_id`, `driver_id`),
   CONSTRAINT `pk_TD_Trucks`
     FOREIGN KEY (`truck_id`)
@@ -328,11 +328,11 @@ DROP TABLE IF EXISTS `Warehouse_Project`.`Routes_Warehouses` ;
 CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Routes_Warehouses` (
   `route_id` INT UNSIGNED NOT NULL,
   `warehouse_id` INT UNSIGNED NOT NULL,
-  INDEX `pk_RW_Routes_idx` (`route_id` ASC) VISIBLE,
-  INDEX `pk_RW_Warehouses_idx` (`warehouse_id` ASC) VISIBLE,
+  INDEX `pk_RW_Routes_idx` (`route_id` ASC),
+  INDEX `pk_RW_Warehouses_idx` (`warehouse_id` ASC),
   PRIMARY KEY (`route_id`, `warehouse_id`),
-  UNIQUE INDEX `route_id_UNIQUE` (`route_id` ASC) VISIBLE,
-  UNIQUE INDEX `warehouse_id_UNIQUE` (`warehouse_id` ASC) VISIBLE,
+  UNIQUE INDEX `route_id_UNIQUE` (`route_id` ASC),
+  UNIQUE INDEX `warehouse_id_UNIQUE` (`warehouse_id` ASC),
   CONSTRAINT `pk_RW_Routes`
     FOREIGN KEY (`route_id`)
     REFERENCES `Warehouse_Project`.`Routes` (`id`)
@@ -355,8 +355,8 @@ CREATE TABLE IF NOT EXISTS `Warehouse_Project`.`Warehouses_Distance` (
   `warehouses_from_id` INT NOT NULL,
   `warehouses_to_id` INT NOT NULL,
   `distance` INT NOT NULL,
-  INDEX `fk_Warehouse_Distance_Warehouses1_idx` (`warehouses_from_id` ASC) VISIBLE,
-  INDEX `fk_Warehouse_Distance_Warehouses2_idx` (`warehouses_to_id` ASC) VISIBLE,
+  INDEX `fk_Warehouse_Distance_Warehouses1_idx` (`warehouses_from_id` ASC),
+  INDEX `fk_Warehouse_Distance_Warehouses2_idx` (`warehouses_to_id` ASC),
   PRIMARY KEY (`warehouses_from_id`, `warehouses_to_id`),
   CONSTRAINT `fk_Warehouse_Distance_Warehouses1`
     FOREIGN KEY (`warehouses_from_id`)
