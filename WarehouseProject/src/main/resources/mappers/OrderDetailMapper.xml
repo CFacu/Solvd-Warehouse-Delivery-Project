@@ -9,6 +9,7 @@
         <result property="subtotalVolume" column="subtotal_volume"/>
         <result property="subtotalPrice" column="subtotal_price"/>
         <association property="product" resultMap="com.solvd.warehouseProject.daos.IProductDAO.ProductResultMap"/>
+        <association property="order" resultMap="com.solvd.warehouseProject.daos.IOrderDAO.OrderResultMap"/>
     </resultMap>
   <select id="get" resultMap="OrderDetailResultMap">
   <![CDATA[
@@ -17,8 +18,15 @@
   </select>
   <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
 	<![CDATA[
-		INSERT INTO Orders_Details (quantity, products_id)
-		VALUES (#{quantity},#{product.id})
+		INSERT INTO Orders_Details (quantity, products_id, subtotal_volume, subtotal_price)
+		VALUES (#{quantity},#{product.id},#{subtotalVolume},#{subtotalPrice})
 	]]>
 	</insert>
+   <update id = "addToOrder">
+	<![CDATA[
+		UPDATE Orders_Details SET 
+		orders_id = #{order.id}
+		WHERE id = #{orderDetail.id}
+	]]>
+	</update>
 </mapper>

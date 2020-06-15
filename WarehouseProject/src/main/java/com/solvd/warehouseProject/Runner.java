@@ -69,8 +69,14 @@ public class Runner {
 		orderA.addOrderDetail(orderDetailB);	
 		orderA.addOrderDetail(orderDetailC);
 		orderA.addOrderDetail(orderDetailD);
-		OrderService orderService = new OrderService();
 		
+		OrderService orderService = new OrderService();
+		orderService.insert(orderA);
+		detailService.addToOrder(orderDetailA,orderA);
+		detailService.addToOrder(orderDetailB,orderA);
+		detailService.addToOrder(orderDetailC,orderA);
+		detailService.addToOrder(orderDetailD,orderA);
+
 		LOGGER.info("Unsorted order details:");
 		orderA.getOrderDetails().forEach(od -> LOGGER.info(od.getProduct().getName()));
 		
