@@ -4,12 +4,18 @@ import java.time.LocalDate;
 
 import com.solvd.warehouseProject.exceptions.OrderVolumeExceededException;
 import com.solvd.warehouseProject.models.Company;
+import com.solvd.warehouseProject.models.Country;
 import com.solvd.warehouseProject.models.Order;
 import com.solvd.warehouseProject.models.OrderDetail;
 import com.solvd.warehouseProject.models.Product;
 import com.solvd.warehouseProject.models.ProductCategory;
 import com.solvd.warehouseProject.models.Truck;
 import com.solvd.warehouseProject.models.Warehouse;
+import com.solvd.warehouseProject.services.CompanyService;
+import com.solvd.warehouseProject.services.CountryService;
+import com.solvd.warehouseProject.services.OrderDetailService;
+import com.solvd.warehouseProject.services.ProductCategoryService;
+import com.solvd.warehouseProject.services.ProductService;
 
 import java.util.List;
 
@@ -23,22 +29,37 @@ public class Runner {
 	public static void main(String[] args) {
 		//creating company
 		Company company = new Company("The Food Company");
+		CompanyService companyService = new CompanyService();
+		companyService.insert(company);
 		
 		//create a product category
 		ProductCategory categoryA = new ProductCategory("Food", "All food products");
+		ProductCategoryService prodCategoryService = new ProductCategoryService();
+		prodCategoryService.insert(categoryA);
 		
 		//initialize some products
 		Product productA = new Product ("Rice", "White refined rice", 0.5, LocalDate.parse("2020-06-17"), 2.50, categoryA);
 		Product productB = new Product ("Flour", "White refined flour", 0.3, LocalDate.parse("2020-06-16"), 2.25, categoryA);
 		Product productC = new Product ("Oatmeal", "Processed oatmeal", 0.6, LocalDate.parse("2020-06-20"), 5.0, categoryA);
 		Product productD = new Product ("Sugar", "Refined sugar", 1.5, LocalDate.parse("2020-06-25"), 4.5, categoryA);
+		ProductService productService = new ProductService();
+		productService.insert(productA);
+		productService.insert(productB);
+		productService.insert(productC);
+		productService.insert(productD);
+
 		
 		//initialize order details for each product
 		OrderDetail orderDetailA = new OrderDetail (productA, 2400);
 		OrderDetail orderDetailB = new OrderDetail (productB, 2500);
 		OrderDetail orderDetailC = new OrderDetail (productC, 1800);
 		OrderDetail orderDetailD = new OrderDetail (productD, 800);
-		
+		OrderDetailService detailService = new OrderDetailService();
+		detailService.insert(orderDetailA);
+		detailService.insert(orderDetailB);
+		detailService.insert(orderDetailC);
+		detailService.insert(orderDetailD);
+
 		
 		//creating an order and adding those order details to it
 		Order orderA = new Order ();

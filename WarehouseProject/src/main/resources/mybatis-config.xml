@@ -15,7 +15,6 @@
         <typeAlias type="com.solvd.warehouseProject.models.Phone" alias="Phone"/>
         <typeAlias type="com.solvd.warehouseProject.models.Product" alias="Product"/>
         <typeAlias type="com.solvd.warehouseProject.models.ProductCategory" alias="ProductCategory"/>
-        <typeAlias type="com.solvd.warehouseProject.models.Route" alias="Route"/>
         <typeAlias type="com.solvd.warehouseProject.models.Truck" alias="Truck"/>
         <typeAlias type="com.solvd.warehouseProject.models.Warehouse" alias="Warehouse"/>
     </typeAliases>
@@ -41,7 +40,6 @@
         <mapper resource="mappers/PhoneMapper.xml"/>
         <mapper resource="mappers/ProductCategoryMapper.xml"/>
         <mapper resource="mappers/ProductMapper.xml"/>
-        <mapper resource="mappers/RouteMapper.xml"/>
         <mapper resource="mappers/TruckMapper.xml"/>
         <mapper resource="mappers/WarehouseMapper.xml"/>
     </mappers>

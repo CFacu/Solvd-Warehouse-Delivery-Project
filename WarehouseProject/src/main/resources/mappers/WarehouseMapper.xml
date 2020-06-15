@@ -2,11 +2,11 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.solvd.warehouseProject.daos.IProductCategoryDAO">
-    <resultMap id="ProductCategoryMap" type="ProductCategory" autoMapping="false">
+<mapper namespace="com.solvd.warehouseProject.daos.IWarehouseDAO">
+    <resultMap id="WarehouseResultMap" type="Warehouse" autoMapping="false">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="distanceFromCompany" column="distance_from_company"/>
-        <collection property="orderDetails" ofType="OrderDetail"  resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailMap" columnPrefix="order_details_"/>
+        <collection property="orderDetails" ofType="OrderDetail"  resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailResultMap" columnPrefix="order_details_"/>
     </resultMap>
 </mapper>
