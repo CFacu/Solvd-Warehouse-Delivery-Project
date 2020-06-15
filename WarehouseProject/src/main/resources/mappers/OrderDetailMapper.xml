@@ -3,8 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.solvd.warehouseProject.daos.IOrderDetailDAO">
-    <resultMap id="OrderDetailMap" type="OrderDetail" autoMapping="false">
+    <resultMap id="OrderDetailResultMap" type="OrderDetail" autoMapping="false">
         <id property="id" column="id"/>
-        <result property="totalVolume" column="total_volume"/>
+        <result property="quantity" column="quantity"/>
+        <result property="subtotalVolume" column="subtotal_volume"/>
+        <result property="subtotalPrice" column="subtotal_price"/>
+        <association property="product" resultMap="com.solvd.warehouseProject.daos.IProductDAO.ProductResultMap"/>
+        <association property="order" resultMap="com.solvd.warehouseProject.daos.IOrderDAO.OrderResultMap"/>
     </resultMap>
+  <select id="get" resultMap="OrderDetailResultMap">
+  <![CDATA[
+    	SELECT * FROM Orders_Details WHERE id = #{id}
+	]]>
+  </select>
+  <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+	<![CDATA[
+		INSERT INTO Orders_Details (quantity, products_id, subtotal_volume, subtotal_price)
+		VALUES (#{quantity},#{product.id},#{subtotalVolume},#{subtotalPrice})
+	]]>
+	</insert>
+   <update id = "addToOrder">
+	<![CDATA[
+		UPDATE Orders_Details SET 
+		orders_id = #{order.id}
+		WHERE id = #{orderDetail.id}
+	]]>
+	</update>
 </mapper>

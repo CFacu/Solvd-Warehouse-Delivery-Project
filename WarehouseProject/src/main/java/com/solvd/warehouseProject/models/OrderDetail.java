@@ -8,7 +8,6 @@ public class OrderDetail extends AbstractEntity {
     private Double subtotalPrice;
     private Double volumeToDeliver;
 
-
     public OrderDetail() {
     	this.volumeToDeliver = 0.0;
     }

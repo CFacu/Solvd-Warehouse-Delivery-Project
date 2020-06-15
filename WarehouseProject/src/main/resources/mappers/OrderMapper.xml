@@ -3,9 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.solvd.warehouseProject.daos.IOrderDAO">
-    <resultMap id="OrderMap" type="Order" autoMapping="false">
+    <resultMap id="OrderResultMap" type="Order" autoMapping="false">
         <id property="id" column="id"/>
         <result property="date" column="date"/>
-        <collection property="orderDetails" ofType="OrderDetail"  resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailMap" columnPrefix="order_details_"/>
+        <result property="totalVolume" column="total_volumne"/>
+        <result property="totalPrice" column="total_price"/>
+        <collection property="orderDetails" ofType="OrderDetail" resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailResultMap" columnPrefix="order_details_"/>
     </resultMap>
+ <select id="get" resultMap="OrderResultMap">
+  <![CDATA[
+    	SELECT * FROM Orders WHERE id = #{id}
+	]]>
+  </select>
+  <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+	<![CDATA[
+		INSERT INTO Orders (date, total_volume, total_price)
+		VALUES (#{date},#{totalVolume},#{totalPrice})
+	]]>
+	</insert>
 </mapper>

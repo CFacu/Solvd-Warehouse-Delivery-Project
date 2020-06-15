@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.solvd.warehouseProject.daos.ICityDAO">
-    <resultMap id="CityMap" type="City" autoMapping="false">
+    <resultMap id="CityResultMap" type="City" autoMapping="false">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
-        <collection property="locations" ofType="Location"  resultMap="com.solvd.warehouseProject.daos.ILocationDAO.LocationMap" columnPrefix="locations_"/>
+        <collection property="locations" ofType="Location"  resultMap="com.solvd.warehouseProject.daos.ILocationDAO.LocationResultMap" columnPrefix="locations_"/>
     </resultMap>
 </mapper>

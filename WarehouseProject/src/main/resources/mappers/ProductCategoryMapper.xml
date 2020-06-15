@@ -3,10 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.solvd.warehouseProject.daos.IProductCategoryDAO">
-    <resultMap id="ProductCategoryMap" type="ProductCategory" autoMapping="false">
+    <resultMap id="ProductCategoryResultMap" type="ProductCategory" autoMapping="false">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="description" column="description"/>
-        <association property="product" javaType="Product"/>
     </resultMap>
+ <select id="get" resultMap="ProductCategoryResultMap">
+  <![CDATA[
+    	SELECT * FROM Product_categories WHERE id = #{id}
+	]]>
+  </select>
+ <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+	<![CDATA[
+		INSERT INTO Product_categories (name, description)
+		VALUES (#{name}, #{description})
+	]]>
+	</insert>
 </mapper>

@@ -3,13 +3,25 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.solvd.warehouseProject.daos.IProductDAO">
-    <resultMap id="ProductMap" type="Product" autoMapping="false">
+    <resultMap id="ProductResultMap" type="Product" autoMapping="false">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="description" column="description"/>
         <result property="volume" column="volume"/>
         <result property="dueDate" column="due_date"/>
         <result property="price" column="price"/>
-        <collection property="orderDetails" ofType="OrderDetail"  resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailMap" columnPrefix="order_details_"/>
+        <association property="category" resultMap="com.solvd.warehouseProject.daos.IProductCategoryDAO.ProductCategoryResultMap"/>
     </resultMap>
+    
+ <select id="get" resultMap="ProductResultMap">
+  <![CDATA[
+    	SELECT * FROM Products WHERE id = #{id}
+	]]>
+  </select>
+  <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+	<![CDATA[
+		INSERT INTO Products (name, description, volume, due_Date, price, product_categories_id)
+		VALUES (#{name},#{description},#{volume},#{dueDate},#{price}, #{category.id})
+	]]>
+	</insert>
 </mapper>
