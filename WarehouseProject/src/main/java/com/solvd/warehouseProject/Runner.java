@@ -14,6 +14,7 @@ import com.solvd.warehouseProject.models.Warehouse;
 import com.solvd.warehouseProject.services.CompanyService;
 import com.solvd.warehouseProject.services.CountryService;
 import com.solvd.warehouseProject.services.OrderDetailService;
+import com.solvd.warehouseProject.services.OrderService;
 import com.solvd.warehouseProject.services.ProductCategoryService;
 import com.solvd.warehouseProject.services.ProductService;
 
@@ -68,6 +69,7 @@ public class Runner {
 		orderA.addOrderDetail(orderDetailB);	
 		orderA.addOrderDetail(orderDetailC);
 		orderA.addOrderDetail(orderDetailD);
+		OrderService orderService = new OrderService();
 		
 		LOGGER.info("Unsorted order details:");
 		orderA.getOrderDetails().forEach(od -> LOGGER.info(od.getProduct().getName()));

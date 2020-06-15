@@ -3,6 +3,7 @@ package com.solvd.warehouseProject.services;
 import com.solvd.warehouseProject.connection.MySessionFactory;
 import com.solvd.warehouseProject.daos.IOrderDAO;
 import com.solvd.warehouseProject.models.Order;
+import com.solvd.warehouseProject.models.OrderDetail;
 
 public class OrderService {
 	
@@ -19,4 +20,5 @@ public class OrderService {
 	public void insert(Order order) {
 		orderDAO.insert(order);
 	}
+
 }

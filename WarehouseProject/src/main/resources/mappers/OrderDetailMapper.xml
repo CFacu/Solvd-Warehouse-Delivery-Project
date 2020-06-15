@@ -5,10 +5,10 @@
 <mapper namespace="com.solvd.warehouseProject.daos.IOrderDetailDAO">
     <resultMap id="OrderDetailResultMap" type="OrderDetail" autoMapping="false">
         <id property="id" column="id"/>
+        <result property="quantity" column="quantity"/>
         <result property="subtotalVolume" column="subtotal_volume"/>
         <result property="subtotalPrice" column="subtotal_price"/>
         <association property="product" resultMap="com.solvd.warehouseProject.daos.IProductDAO.ProductResultMap"/>
-         <association property="product" resultMap="com.solvd.warehouseProject.daos.IProductDAO.ProductResultMap"/>
     </resultMap>
   <select id="get" resultMap="OrderDetailResultMap">
   <![CDATA[

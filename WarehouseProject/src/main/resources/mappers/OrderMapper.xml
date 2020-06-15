@@ -8,6 +8,17 @@
         <result property="date" column="date"/>
         <result property="totalVolume" column="total_volumne"/>
         <result property="totalPrice" column="total_price"/>
-        <collection property="orderDetails" ofType="OrderDetail"  resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailResultMap" columnPrefix="order_details_"/>
+        <collection property="orderDetails" ofType="OrderDetail" resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailResultMap" columnPrefix="order_details_"/>
     </resultMap>
+ <select id="get" resultMap="OrderResultMap">
+  <![CDATA[
+    	SELECT * FROM Orders WHERE id = #{id}
+	]]>
+  </select>
+  <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+	<![CDATA[
+		INSERT INTO Orders (date, total_volume, total_price)
+		VALUES (#{date},#{totalVolume},#{totalPrice})
+	]]>
+	</insert>
 </mapper>
