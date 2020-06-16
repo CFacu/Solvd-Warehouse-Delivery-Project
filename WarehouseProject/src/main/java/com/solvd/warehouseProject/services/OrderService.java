@@ -4,6 +4,7 @@ import com.solvd.warehouseProject.connection.MySessionFactory;
 import com.solvd.warehouseProject.daos.IOrderDAO;
 import com.solvd.warehouseProject.models.Order;
 import com.solvd.warehouseProject.models.OrderDetail;
+import com.solvd.warehouseProject.models.Truck;
 
 import java.util.List;
 
@@ -41,5 +42,9 @@ public class OrderService {
 
 	public void updatePrice(Long id) {
 		orderDAO.updatePrice(id);
+	}
+
+	public void addToTruck(Truck truck, Order order) {
+		orderDAO.addToTruck(truck, order);
 	}
 }

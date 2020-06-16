@@ -2,6 +2,7 @@ package com.solvd.warehouseProject.services;
 
 import com.solvd.warehouseProject.connection.MySessionFactory;
 import com.solvd.warehouseProject.daos.ITruckDAO;
+import com.solvd.warehouseProject.models.Company;
 import com.solvd.warehouseProject.models.Truck;
 
 import java.util.List;
@@ -32,5 +33,9 @@ public class TruckService {
 
     public void delete(Long id) {
         truckDAO.delete(id);
+    }
+
+    public void addToCompany(Company company, Truck truck) {
+        truckDAO.addToCompany(company, truck);
     }
 }

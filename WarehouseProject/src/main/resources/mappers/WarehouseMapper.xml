@@ -40,4 +40,14 @@
             SELECT * FROM Warehouses;
         ]]>
     </select>
+    <update id="addLocation">
+        <![CDATA[
+            UPDATE Warehouses SET locations_id = #{location.id} WHERE id = #{warehouse.id}
+        ]]>
+    </update>
+    <update id="addToCompany">
+        <![CDATA[
+            UPDATE Warehouses SET companies_id = #{company.id} WHERE id = #{warehouse.id}
+        ]]>
+    </update>
 </mapper>

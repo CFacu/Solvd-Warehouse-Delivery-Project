@@ -37,4 +37,9 @@
             SELECT * FROM Trucks;
         ]]>
     </select>
+    <update id="addToCompany">
+        <![CDATA[
+            UPDATE Trucks SET companies_id = #{company.id} WHERE id = #{truck.id}
+        ]]>
+    </update>
 </mapper>

@@ -3,6 +3,7 @@ package com.solvd.warehouseProject.services;
 import com.solvd.warehouseProject.connection.MySessionFactory;
 import com.solvd.warehouseProject.daos.ICityDAO;
 import com.solvd.warehouseProject.models.City;
+import com.solvd.warehouseProject.models.Country;
 
 import java.util.List;
 
@@ -32,5 +33,10 @@ public class CityService {
 
     public void delete(Long id) {
         cityDAO.delete(id);
+    }
+
+    public void addToCountry(Country country, City city) {
+        cityDAO.addToCountry(country, city);
+        country.addCity(city);
     }
 }
