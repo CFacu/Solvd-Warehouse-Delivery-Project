@@ -17,8 +17,8 @@
     </select>
     <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
         <![CDATA[
-            INSERT INTO Locations (street, number, code, cities_id)
-            VALUES (#{street}, #{number}, #{code}, #{city.id})
+            INSERT INTO Locations (street, number, code)
+            VALUES (#{street}, #{number}, #{code})
         ]]>
     </insert>
     <update id="update">
@@ -37,4 +37,9 @@
             SELECT * FROM Locations;
         ]]>
     </select>
+    <update id="addToCity">
+        <![CDATA[
+            UPDATE Locations SET cities_id = #{city.id} WHERE id = #{location.id}
+        ]]>
+    </update>
 </mapper>

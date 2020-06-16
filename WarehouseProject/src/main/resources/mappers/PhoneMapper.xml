@@ -36,4 +36,9 @@
             SELECT * FROM Phones;
         ]]>
     </select>
+    <update id="addToDriver">
+        <![CDATA[
+            UPDATE Phones SET drivers_id = #{driver.id} WHERE id = #{phone.id}
+        ]]>
+    </update>
 </mapper>

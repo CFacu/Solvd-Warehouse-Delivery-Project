@@ -37,16 +37,19 @@
             SELECT * FROM Orders
         ]]>
     </select>
-
     <update id="updateVolume">
         <![CDATA[
             UPDATE Orders o SET total_volume = (SELECT SUM(subtotal_volume) FROM Orders_Details od WHERE od.orders_id = o.id) WHERE o.id = #{id}
         ]]>
     </update>
-
     <update id="updatePrice">
         <![CDATA[
             UPDATE Orders o SET total_price = (SELECT SUM(subtotal_price) FROM Orders_Details od WHERE od.orders_id = o.id) WHERE o.id = #{id}
+        ]]>
+    </update>
+    <update id="addToTruck">
+        <![CDATA[
+            UPDATE Orders SET trucks_id = #{truck.id} WHERE id = #{order.id}
         ]]>
     </update>
 </mapper>

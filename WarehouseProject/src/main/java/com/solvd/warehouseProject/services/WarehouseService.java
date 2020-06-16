@@ -2,6 +2,8 @@ package com.solvd.warehouseProject.services;
 
 import com.solvd.warehouseProject.connection.MySessionFactory;
 import com.solvd.warehouseProject.daos.IWarehouseDAO;
+import com.solvd.warehouseProject.models.Company;
+import com.solvd.warehouseProject.models.Location;
 import com.solvd.warehouseProject.models.Warehouse;
 
 import java.util.List;
@@ -32,5 +34,13 @@ public class WarehouseService {
 
 	public void update(Warehouse warehouse, Long id) {
 		warehouseDAO.update(warehouse, id);
+	}
+
+	public void addLocation(Location location, Warehouse warehouse) {
+		warehouseDAO.addLocation(location, warehouse);
+	}
+
+	public void addToCompany(Company company, Warehouse warehouse) {
+		warehouseDAO.addToCompany(company, warehouse);
 	}
 }

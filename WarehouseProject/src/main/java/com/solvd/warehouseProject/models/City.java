@@ -29,4 +29,8 @@ public class City extends AbstractEntity{
     public void setLocations(List<Location> locations) {
         this.locations = locations;
     }
+
+    public void addLocation(Location location) {
+        locations.add(location);
+    }
 }
