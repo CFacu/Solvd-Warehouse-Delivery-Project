@@ -5,15 +5,17 @@ import com.solvd.warehouseProject.daos.IOrderDAO;
 import com.solvd.warehouseProject.models.Order;
 import com.solvd.warehouseProject.models.OrderDetail;
 
+import java.util.List;
+
 public class OrderService {
 	
 	private IOrderDAO orderDAO;
 
 	public OrderService() {
-		orderDAO =  MySessionFactory.getSessionFactory().openSession(true).getMapper(IOrderDAO.class);
+		orderDAO =  MySessionFactory.getOrderMapper();
 	}
 	
-	public Order getOrderDetailById(Long id){
+	public Order get(Long id){
 		return orderDAO.get(id);
 	}
 	
@@ -21,4 +23,23 @@ public class OrderService {
 		orderDAO.insert(order);
 	}
 
+	public List<Order> getAll() {
+		return orderDAO.getAll();
+	}
+
+	public void delete(Long id) {
+		orderDAO.delete(id);
+	}
+
+	public void update(Order order, Long id) {
+		orderDAO.update(order, id);
+	}
+
+	public void updateVolume(Double totalVolume, Long id) {
+		orderDAO.updateVolume(totalVolume, id);
+	}
+
+	public void updatePrice(Double totalPrice, Long id) {
+		orderDAO.updatePrice(totalPrice, id);
+	}
 }

@@ -8,15 +8,31 @@
         <result property="name" column="name"/>
         <result property="description" column="description"/>
     </resultMap>
- <select id="get" resultMap="ProductCategoryResultMap">
-  <![CDATA[
-    	SELECT * FROM Product_categories WHERE id = #{id}
-	]]>
-  </select>
- <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
-	<![CDATA[
-		INSERT INTO Product_categories (name, description)
-		VALUES (#{name}, #{description})
-	]]>
-	</insert>
+    <select id="get" resultMap="ProductCategoryResultMap">
+        <![CDATA[
+            SELECT * FROM Product_Categories WHERE id = #{id}
+        ]]>
+    </select>
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+        <![CDATA[
+            INSERT INTO Product_Categories (name, description)
+            VALUES (#{name}, #{description})
+        ]]>
+    </insert>
+    <update id="update">
+        <![CDATA[
+            UPDATE Product_Categories
+            SET name = #{name}, description = #{description} WHERE id = #{id}
+        ]]>
+    </update>
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM Product_Categories WHERE id=#{id}
+        ]]>
+    </delete>
+    <select id="getAll" resultMap="ProductCategoryResultMap">
+        <![CDATA[
+            SELECT * FROM Product_Categories;
+        ]]>
+    </select>
 </mapper>

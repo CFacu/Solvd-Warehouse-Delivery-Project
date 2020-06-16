@@ -7,15 +7,31 @@
         <id property="id" column="id"/>
         <result property="name" column="name"/>
     </resultMap>
- <select id="get" resultMap="CountryResultMap">
-  <![CDATA[
-    	SELECT * FROM Countries WHERE id = #{id}
-	]]>
-  </select>
-  <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
-	<![CDATA[
-		INSERT INTO Countries (name)
-		VALUES (#{name})
-	]]>
-	</insert>
+    <select id="get" resultMap="CountryResultMap">
+        <![CDATA[
+            SELECT * FROM Countries WHERE id = #{id}
+        ]]>
+    </select>
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+        <![CDATA[
+            INSERT INTO Countries (name)
+            VALUES (#{name})
+        ]]>
+    </insert>
+    <update id="update">
+        <![CDATA[
+            UPDATE Countries
+            SET name = #{name} WHERE id = #{id}
+        ]]>
+    </update>
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM Countries WHERE id=#{id}
+        ]]>
+    </delete>
+    <select id="getAll" resultMap="CountryResultMap">
+        <![CDATA[
+            SELECT * FROM Countries;
+        ]]>
+    </select>
 </mapper>

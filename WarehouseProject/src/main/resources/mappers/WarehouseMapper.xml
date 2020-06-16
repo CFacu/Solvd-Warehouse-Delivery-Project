@@ -12,16 +12,32 @@
         <association property="nextWarehouse" resultMap="com.solvd.warehouseProject.daos.IProductCategoryDAO.WarehouseResultMap"/>
         <collection property="orderDetails" ofType="OrderDetail"  resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailResultMap" columnPrefix="order_details_"/>
     </resultMap>
-    
- <select id="get" resultMap="WarehouseResultMap">
-  <![CDATA[
-    	SELECT * FROM Warehouses WHERE id = #{id}
-	]]>
-  </select>
-  <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
-	<![CDATA[
-		INSERT INTO Warehouses (name, total_capacity, available_capacity, days_to_next_warehouse, next_warehouses_id)
-		VALUES (#{name},#{totalCapacity},#{availableCapacity},#{daysToNextWarehouse},#{warehouse.id})
-	]]>
-	</insert>
+    <select id="get" resultMap="WarehouseResultMap">
+        <![CDATA[
+            SELECT * FROM Warehouses WHERE id = #{id}
+        ]]>
+    </select>
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+        <![CDATA[
+            INSERT INTO Warehouses (name, total_capacity, available_capacity, days_to_next_warehouse, next_warehouses_id)
+            VALUES (#{name}, #{totalCapacity}, #{availableCapacity}, #{daysToNextWarehouse}, #{nextWarehouse.id})
+        ]]>
+    </insert>
+    <update id="update">
+        <![CDATA[
+            UPDATE Warehouses
+            SET name = #{name}, total_capacity = #{totalCapacity}, available_capacity = #{availableCapacity},
+            days_to_next_warehouse = #{daysToNextWarehouse}, next_warehouses_id = #{nextWarehouse.id} WHERE id = #{id}
+        ]]>
+    </update>
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM Warehouses WHERE id = #{id}
+        ]]>
+    </delete>
+    <select id="getAll" resultMap="WarehouseResultMap">
+        <![CDATA[
+            SELECT * FROM Warehouses;
+        ]]>
+    </select>
 </mapper>
