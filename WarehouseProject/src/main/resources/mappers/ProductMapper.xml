@@ -12,16 +12,31 @@
         <result property="price" column="price"/>
         <association property="category" resultMap="com.solvd.warehouseProject.daos.IProductCategoryDAO.ProductCategoryResultMap"/>
     </resultMap>
-    
- <select id="get" resultMap="ProductResultMap">
-  <![CDATA[
-    	SELECT * FROM Products WHERE id = #{id}
-	]]>
-  </select>
-  <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
-	<![CDATA[
-		INSERT INTO Products (name, description, volume, due_Date, price, product_categories_id)
-		VALUES (#{name},#{description},#{volume},#{dueDate},#{price}, #{category.id})
-	]]>
-	</insert>
+    <select id="get" resultMap="ProductResultMap">
+        <![CDATA[
+            SELECT * FROM Products WHERE id = #{id}
+        ]]>
+    </select>
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+        <![CDATA[
+            INSERT INTO Products (name, description, volume, due_date, price, product_categories_id)
+            VALUES (#{name},#{description},#{volume},#{dueDate},#{price}, #{category.id})
+        ]]>
+    </insert>
+    <update id="update">
+        <![CDATA[
+            UPDATE Products
+            SET name = #{name}, description = #{description}, volume = #{volume}, due_date = ${dueDate}, price = #{price}, product_categories_id = #{category.id} WHERE id = #{id}
+        ]]>
+    </update>
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM Products WHERE id = #{id}
+        ]]>
+    </delete>
+    <select id="getAll" resultMap="ProductResultMap">
+        <![CDATA[
+            SELECT * FROM Products;
+        ]]>
+    </select>
 </mapper>

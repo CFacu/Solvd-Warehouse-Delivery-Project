@@ -6,6 +6,34 @@
     <resultMap id="PhoneResultMap" type="Phone" autoMapping="false">
         <id property="id" column="id"/>
         <result property="number" column="number"/>
-        <association property="type" resultMap="com.solvd.warehouseProject.daos.IPhoneTypeDAO"/>
+        <association property="type" resultMap="com.solvd.warehouseProject.daos.IPhoneTypeDAO.PhoneTypeResultMap"/>
+        <association property="driver" resultMap="com.solvd.warehouseProject.daos.IDriverDAO.DriverResultMap"/>
     </resultMap>
+    <select id="get" resultMap="PhoneResultMap">
+        <![CDATA[
+            SELECT * FROM Phones WHERE id = #{id}
+        ]]>
+    </select>
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+        <![CDATA[
+            INSERT INTO Phones (number, type_id, drivers_id)
+            VALUES (#{number},#{type.id},#{driver.id})
+        ]]>
+    </insert>
+    <update id="update">
+        <![CDATA[
+            UPDATE Phones
+            SET number = #{number}, type_id = #{type.id}, drivers_id = #{driver.id} WHERE id = #{id}
+        ]]>
+    </update>
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM Phones WHERE id=#{id}
+        ]]>
+    </delete>
+    <select id="getAll" resultMap="PhoneResultMap">
+        <![CDATA[
+            SELECT * FROM Phones;
+        ]]>
+    </select>
 </mapper>

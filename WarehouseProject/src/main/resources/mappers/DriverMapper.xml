@@ -10,4 +10,31 @@
         <result property="birthday" column="birth"/>
         <collection property="phones" ofType="Phone"  resultMap="com.solvd.warehouseProject.daos.IPhoneDAO.PhoneResultMap" columnPrefix="maps_"/>
     </resultMap>
+    <select id="get" resultMap="DriverResultMap">
+        <![CDATA[
+            SELECT * FROM Drivers WHERE id = #{id}
+        ]]>
+    </select>
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+        <![CDATA[
+            INSERT INTO Companies (first_name, last_name, age, birth)
+            VALUES (#{firstName}, #{lastName}, #{age}, #{birthday})
+        ]]>
+    </insert>
+    <update id="update">
+        <![CDATA[
+            UPDATE Drivers
+            SET first_name = #{firstName}, last_name = #{lastName}, age = #{age}, birth = #{birthday} WHERE id = #{id}
+        ]]>
+    </update>
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM Drivers WHERE id=#{id}
+        ]]>
+    </delete>
+    <select id="getAll" resultMap="DriverResultMap">
+        <![CDATA[
+            SELECT * FROM Drivers;
+        ]]>
+    </select>
 </mapper>

@@ -11,22 +11,37 @@
         <association property="product" resultMap="com.solvd.warehouseProject.daos.IProductDAO.ProductResultMap"/>
         <association property="order" resultMap="com.solvd.warehouseProject.daos.IOrderDAO.OrderResultMap"/>
     </resultMap>
-  <select id="get" resultMap="OrderDetailResultMap">
-  <![CDATA[
-    	SELECT * FROM Orders_Details WHERE id = #{id}
-	]]>
-  </select>
-  <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
-	<![CDATA[
-		INSERT INTO Orders_Details (quantity, products_id, subtotal_volume, subtotal_price)
-		VALUES (#{quantity},#{product.id},#{subtotalVolume},#{subtotalPrice})
-	]]>
-	</insert>
-   <update id = "addToOrder">
-	<![CDATA[
-		UPDATE Orders_Details SET 
-		orders_id = #{order.id}
-		WHERE id = #{orderDetail.id}
-	]]>
-	</update>
+    <select id="get" resultMap="OrderDetailResultMap">
+        <![CDATA[
+            SELECT * FROM Orders_Details WHERE id = #{id}
+        ]]>
+    </select>
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+        <![CDATA[
+            INSERT INTO Orders_Details (quantity, products_id, subtotal_volume, subtotal_price)
+            VALUES (#{quantity},#{product.id},#{subtotalVolume},#{subtotalPrice})
+        ]]>
+    </insert>
+    <update id = "addToOrder">
+        <![CDATA[
+            UPDATE Orders_Details SET orders_id = #{order.id}
+            WHERE id = #{orderDetail.id}
+        ]]>
+    </update>
+    <update id="update">
+        <![CDATA[
+            UPDATE Orders_Details
+            SET quantity = #{quantity}, products_id = #{product.id}, subtotal_volume = #{subtotalVolume}, subtotal_price = #{subtotalPrice} WHERE id = #{id}
+        ]]>
+    </update>
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM Orders_Details WHERE id=#{id}
+        ]]>
+    </delete>
+    <select id="getAll" resultMap="OrderDetailResultMap">
+        <![CDATA[
+            SELECT * FROM Orders_Details;
+        ]]>
+    </select>
 </mapper>

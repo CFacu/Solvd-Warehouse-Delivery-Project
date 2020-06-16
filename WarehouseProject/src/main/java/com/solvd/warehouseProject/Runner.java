@@ -65,8 +65,10 @@ public class Runner {
 		//creating an order and adding those order details to it
 		Order orderA = new Order ();
 		orderA.setDate(LocalDate.parse("2020-06-12"));
+		orderA.setTotalVolume(50D);
+		orderA.setTotalPrice(50D);
 		orderA.addOrderDetail(orderDetailA);
-		orderA.addOrderDetail(orderDetailB);	
+		orderA.addOrderDetail(orderDetailB);
 		orderA.addOrderDetail(orderDetailC);
 		orderA.addOrderDetail(orderDetailD);
 		

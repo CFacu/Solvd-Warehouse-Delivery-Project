@@ -6,6 +6,34 @@
     <resultMap id="CityResultMap" type="City" autoMapping="false">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
+        <association property="country" resultMap="com.solvd.warehouseProject.daos.ICountryDAO.CountryResultMap"/>
         <collection property="locations" ofType="Location"  resultMap="com.solvd.warehouseProject.daos.ILocationDAO.LocationResultMap" columnPrefix="locations_"/>
     </resultMap>
+    <select id="get" resultMap="CityResultMap">
+        <![CDATA[
+            SELECT * FROM Cities WHERE id = #{id}
+        ]]>
+    </select>
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+        <![CDATA[
+            INSERT INTO Cities (name, countries_id)
+            VALUES (#{name}, #{country.id})
+        ]]>
+    </insert>
+    <update id="update">
+        <![CDATA[
+            UPDATE Cities
+            SET name = #{name}, countries_id = #{country.id} WHERE id = #{id}
+        ]]>
+    </update>
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM Cities WHERE id=#{id}
+        ]]>
+    </delete>
+    <select id="getAll" resultMap="CityResultMap">
+        <![CDATA[
+            SELECT * FROM Cities;
+        ]]>
+    </select>
 </mapper>

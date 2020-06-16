@@ -6,7 +6,35 @@
     <resultMap id="TruckResultMap" type="Truck" autoMapping="false">
         <id property="id" column="id"/>
         <result property="capacity" column="capacity"/>
+        <association property="company" resultMap="com.solvd.warehouseProject.daos.ICompanyDAO.CompanyResultMap"/>
         <collection property="drivers" ofType="Driver"  resultMap="com.solvd.warehouseProject.daos.IDriverDAO.DriverResultMap" columnPrefix="drivers_"/>
         <collection property="orders" ofType="Order"  resultMap="com.solvd.warehouseProject.daos.IOrderDAO.OrderResultMap" columnPrefix="orders_"/>
     </resultMap>
+    <select id="get" resultMap="TruckResultMap">
+        <![CDATA[
+            SELECT * FROM Trucks WHERE id = #{id}
+        ]]>
+    </select>
+    <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
+        <![CDATA[
+            INSERT INTO Trucks (capacity, companies_id)
+            VALUES (#{capacity}, #{company.id})
+        ]]>
+    </insert>
+    <update id="update">
+        <![CDATA[
+            UPDATE Trucks
+            SET capacity = #{capacity}, companies_id = #{company.id} WHERE id = #{id}
+        ]]>
+    </update>
+    <delete id="delete">
+        <![CDATA[
+            DELETE FROM Trucks WHERE id = #{id}
+        ]]>
+    </delete>
+    <select id="getAll" resultMap="TruckResultMap">
+        <![CDATA[
+            SELECT * FROM Trucks;
+        ]]>
+    </select>
 </mapper>
