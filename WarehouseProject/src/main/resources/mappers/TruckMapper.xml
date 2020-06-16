@@ -18,7 +18,7 @@
     <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
         <![CDATA[
             INSERT INTO Trucks (capacity, companies_id)
-            VALUES (#{capacity},#{company.id})
+            VALUES (#{capacity}, #{company.id})
         ]]>
     </insert>
     <update id="update">

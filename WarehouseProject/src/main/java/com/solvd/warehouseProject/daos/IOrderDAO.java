@@ -5,6 +5,6 @@ import com.solvd.warehouseProject.models.OrderDetail;
 import org.apache.ibatis.annotations.Param;
 
 public interface IOrderDAO extends IDAO<Order> {
-    void updateVolume(@Param("totalVolume") Double totalVolume, Long id);
-    void updatePrice(@Param("totalPrice") Double totalPrice, Long id);
+    void updateVolume(@Param("id") Long id);
+    void updatePrice(@Param("id") Long id);
 }

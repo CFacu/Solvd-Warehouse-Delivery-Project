@@ -6,7 +6,7 @@
     <resultMap id="OrderResultMap" type="Order" autoMapping="false">
         <id property="id" column="id"/>
         <result property="date" column="date"/>
-        <result property="totalVolume" column="total_volumne"/>
+        <result property="totalVolume" column="total_volume"/>
         <result property="totalPrice" column="total_price"/>
         <collection property="orderDetails" ofType="OrderDetail" resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailResultMap" columnPrefix="order_details_"/>
     </resultMap>
@@ -18,13 +18,13 @@
     <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
         <![CDATA[
             INSERT INTO Orders (date, total_volume, total_price)
-            VALUES (#{date},#{totalVolume},#{totalPrice})
+            VALUES (#{date}, #{totalVolume}, #{totalPrice})
         ]]>
     </insert>
     <update id="update">
         <![CDATA[
             UPDATE Orders
-            SET date = #{date}, total_volume = #{totalVolume}, total_price = #{totalPrice} WHERE id = #{id}
+            SET date = #{date}, total_volume = #{totalVolume}, total_price = #{totalPrice}, trucks_id = #{truck.id} WHERE id = #{id}
         ]]>
     </update>
     <delete id="delete">
@@ -34,21 +34,19 @@
     </delete>
     <select id="getAll" resultMap="OrderResultMap">
         <![CDATA[
-            SELECT * FROM Orders;
+            SELECT * FROM Orders
         ]]>
     </select>
 
     <update id="updateVolume">
         <![CDATA[
-            UPDATE Orders
-            SET total_volume = #{totalVolume} WHERE id = #{id}
+            UPDATE Orders o SET total_volume = (SELECT SUM(subtotal_volume) FROM Orders_Details od WHERE od.orders_id = o.id) WHERE o.id = #{id}
         ]]>
     </update>
 
     <update id="updatePrice">
         <![CDATA[
-            UPDATE Orders
-            SET total_price = #{totalPrice} WHERE id = #{id}
+            UPDATE Orders o SET total_price = (SELECT SUM(subtotal_price) FROM Orders_Details od WHERE od.orders_id = o.id) WHERE o.id = #{id}
         ]]>
     </update>
 </mapper>

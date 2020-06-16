@@ -35,11 +35,11 @@ public class OrderService {
 		orderDAO.update(order, id);
 	}
 
-	public void updateVolume(Double totalVolume, Long id) {
-		orderDAO.updateVolume(totalVolume, id);
+	public void updateVolume(Long id) {
+		orderDAO.updateVolume(id);
 	}
 
-	public void updatePrice(Double totalPrice, Long id) {
-		orderDAO.updatePrice(totalPrice, id);
+	public void updatePrice(Long id) {
+		orderDAO.updatePrice(id);
 	}
 }

@@ -25,9 +25,9 @@ public class OrderDetailService {
 	
 	public void addToOrder(OrderDetail orderDetail, Order order) {
 		OrderService orderService = new OrderService();
-		orderService.updatePrice(order.getTotalPrice() + orderDetail.getSubtotalPrice(), order.getId());
-		orderService.updateVolume(order.getTotalVolume() + orderDetail.getSubtotalVolume(), order.getId());
 		orderDetailDAO.addToOrder(orderDetail, order);
+		orderService.updatePrice(order.getId());
+		orderService.updateVolume(order.getId());
 	}
 
 	public List<OrderDetail> getAll() {
