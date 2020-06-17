@@ -1,5 +1,6 @@
 package com.solvd.warehouseProject.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class City extends AbstractEntity{
@@ -7,6 +8,7 @@ public class City extends AbstractEntity{
     private List<Location> locations;
 
     public City() {
+    	locations = new ArrayList<Location>();
     }
 
     public City(String name, List<Location> locations) {
