@@ -17,14 +17,14 @@
     </select>
     <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
         <![CDATA[
-            INSERT INTO Trucks (capacity, companies_id)
-            VALUES (#{capacity}, #{company.id})
+            INSERT INTO Trucks (capacity)
+            VALUES (#{capacity})
         ]]>
     </insert>
     <update id="update">
         <![CDATA[
             UPDATE Trucks
-            SET capacity = #{capacity}, companies_id = #{company.id} WHERE id = #{id}
+            SET capacity = #{capacity} WHERE id = #{id}
         ]]>
     </update>
     <delete id="delete">
