@@ -8,7 +8,6 @@
         <result property="date" column="date"/>
         <result property="totalVolume" column="total_volume"/>
         <result property="totalPrice" column="total_price"/>
-        <collection property="orderDetails" ofType="OrderDetail" resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailResultMap" columnPrefix="order_details_"/>
     </resultMap>
     <select id="get" resultMap="OrderResultMap">
         <![CDATA[
@@ -52,4 +51,9 @@
             UPDATE Orders SET trucks_id = #{truck.id} WHERE id = #{order.id}
         ]]>
     </update>
+    <select id="getAllByTruckId" resultMap="OrderResultMap">
+        <![CDATA[
+            SELECT * FROM Orders WHERE trucks_id = #{id}
+        ]]>
+    </select>
 </mapper>

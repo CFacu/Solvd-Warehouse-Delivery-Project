@@ -5,10 +5,10 @@
 <mapper namespace="com.solvd.warehouseProject.daos.IDriverDAO">
     <resultMap id="DriverResultMap" type="Driver" autoMapping="false">
         <id property="id" column="id"/>
-        <result property="name" column="name"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
         <result property="age" column="age"/>
         <result property="birthday" column="birth"/>
-        <collection property="phones" ofType="Phone"  resultMap="com.solvd.warehouseProject.daos.IPhoneDAO.PhoneResultMap" columnPrefix="maps_"/>
     </resultMap>
     <select id="get" resultMap="DriverResultMap">
         <![CDATA[
@@ -34,7 +34,14 @@
     </delete>
     <select id="getAll" resultMap="DriverResultMap">
         <![CDATA[
-            SELECT * FROM Drivers;
+            SELECT * FROM Drivers
+        ]]>
+    </select>
+    <select id="getAllByTruckId" resultMap="DriverResultMap">
+        <![CDATA[
+            SELECT d.id, d.first_name, d.last_name, d.age, d.birth FROM Drivers d
+            LEFT JOIN Trucks_Drivers td ON d.id = td.drivers_id
+            LEFT JOIN Trucks t ON td.trucks_id = t.id WHERE t.id = #{id}
         ]]>
     </select>
 </mapper>

@@ -8,13 +8,17 @@ import com.solvd.warehouseProject.models.Driver;
 
 public class DriverService {
     private IDriverDAO driverDAO;
+    private PhoneService phoneService;
 
     public DriverService() {
         driverDAO = MyConnectionFactory.getDriverMapper();
+        phoneService = new PhoneService();
     }
 
     public Driver get(Long id) {
-        return driverDAO.get(id);
+        Driver driver = driverDAO.get(id);
+        driver.setPhones(phoneService.getAllByDriverId(driver.getId()));
+        return driver;
     }
 
     public void insert(Driver driver) {
@@ -22,7 +26,9 @@ public class DriverService {
     }
 
     public List<Driver> getAll() {
-        return driverDAO.getAll();
+        List<Driver> drivers = driverDAO.getAll();
+        drivers.forEach(x -> x.setPhones(phoneService.getAllByDriverId(x.getId())));
+        return drivers;
     }
 
     public void delete(Long id) {
@@ -31,5 +37,11 @@ public class DriverService {
 
     public void update(Driver driver, Long id) {
         driverDAO.update(driver, id);
+    }
+
+    public List<Driver> getAllByTruckId(Long id) {
+        List<Driver> drivers = driverDAO.getAllByTruckId(id);
+        drivers.forEach(x -> x.setPhones(phoneService.getAllByDriverId(x.getId())));
+        return drivers;
     }
 }

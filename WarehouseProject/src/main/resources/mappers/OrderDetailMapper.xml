@@ -8,8 +8,6 @@
         <result property="quantity" column="quantity"/>
         <result property="subtotalVolume" column="subtotal_volume"/>
         <result property="subtotalPrice" column="subtotal_price"/>
-        <association property="product" resultMap="com.solvd.warehouseProject.daos.IProductDAO.ProductResultMap"/>
-        <association property="order" resultMap="com.solvd.warehouseProject.daos.IOrderDAO.OrderResultMap"/>
     </resultMap>
     <select id="get" resultMap="OrderDetailResultMap">
         <![CDATA[
@@ -42,6 +40,11 @@
     <select id="getAll" resultMap="OrderDetailResultMap">
         <![CDATA[
             SELECT * FROM Orders_Details;
+        ]]>
+    </select>
+    <select id="getAllByOrderId" resultMap="OrderDetailResultMap">
+        <![CDATA[
+            SELECT * FROM Orders_Details WHERE orders_id = #{id}
         ]]>
     </select>
 </mapper>

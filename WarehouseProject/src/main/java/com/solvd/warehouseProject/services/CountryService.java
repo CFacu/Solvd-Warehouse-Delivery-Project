@@ -3,19 +3,24 @@ package com.solvd.warehouseProject.services;
 import java.util.List;
 
 import com.solvd.warehouseProject.connection.MyConnectionFactory;
+import com.solvd.warehouseProject.daos.ICityDAO;
 import com.solvd.warehouseProject.daos.ICountryDAO;
 import com.solvd.warehouseProject.models.Country;
 
 public class CountryService {
 
 	private ICountryDAO countryDAO;
+	private CityService cityDAO;
 
 	public CountryService() {
 		countryDAO =  MyConnectionFactory.getCountryMapper();
+		cityDAO = new CityService();
 	}
 	
 	public Country get(Long id){
-		return countryDAO.get(id);
+		Country country = countryDAO.get(id);
+		country.setCities(cityDAO.getAllByCountryId(country.getId()));
+		return country;
 	}
 	
 	public void insert(Country country) {
@@ -31,6 +36,10 @@ public class CountryService {
 	}
 
 	public List<Country> getAll() {
-		return countryDAO.getAll();
+		List<Country> countries = countryDAO.getAll();
+		countries.forEach(x-> {
+			x.setCities(cityDAO.getAllByCountryId(x.getId()));
+		});
+		return countries;
 	}
 }

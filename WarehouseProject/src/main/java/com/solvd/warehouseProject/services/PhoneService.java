@@ -37,4 +37,8 @@ public class PhoneService {
     public void addToDriver(Driver driver, Phone phone) {
         phoneDAO.addToDriver(driver, phone);
     }
+
+    public List<Phone> getAllByDriverId(Long id) {
+        return phoneDAO.getAllByDriverId(id);
+    }
 }
