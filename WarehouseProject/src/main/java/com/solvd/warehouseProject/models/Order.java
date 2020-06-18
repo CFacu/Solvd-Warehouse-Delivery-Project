@@ -72,11 +72,11 @@ public class Order extends AbstractEntity{
     	this.getOrderDetails().add(orderDetail);
     }
     
-    public List<OrderDetail> sortOrderDetails () { //dont know why but it's sorting the original order details list
+    public List<OrderDetail> sortOrderDetails () { 
     	List<OrderDetail> sortedOrderDetails = this.getOrderDetails();
     	sortedOrderDetails.sort((OrderDetail od1, OrderDetail od2) -> 
-			(new Double(od2.getSubtotalPrice()/od2.getProduct().getDaysUntilDueDate()).compareTo(
-					(new Double(od1.getSubtotalPrice()/od1.getProduct().getDaysUntilDueDate())))));
+			(new Double(od2.getSubtotalPrice()/od2.getProduct().getDaysUntilDueDate()/od2.getSubtotalVolume()).compareTo(
+					(new Double(od1.getSubtotalPrice()/od1.getProduct().getDaysUntilDueDate()/od1.getSubtotalVolume())))));
     	return sortedOrderDetails;
     }
 }

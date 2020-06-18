@@ -1,5 +1,7 @@
 package com.solvd.warehouseProject.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //added deliveredVolume, could also put deliveredQuantity, but that would require some more calculations
 public class OrderDetail extends AbstractEntity {
     private Product product;
@@ -19,7 +21,8 @@ public class OrderDetail extends AbstractEntity {
         this.subtotalPrice = this.getProduct().getPrice() * this.quantity;
         this.volumeToDeliver = this.subtotalVolume;
     }
-
+    
+    @JsonIgnore
     public Double getSubtotalVolume() {
         return subtotalVolume;
     }
@@ -36,6 +39,7 @@ public class OrderDetail extends AbstractEntity {
         this.product = product;
     }
     
+    @JsonIgnore
     public Integer getQuantity() {
         return quantity;
     }
@@ -43,7 +47,8 @@ public class OrderDetail extends AbstractEntity {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-
+    
+    @JsonIgnore
 	public Double getSubtotalPrice() {
 		return subtotalPrice;
 	}
@@ -51,7 +56,8 @@ public class OrderDetail extends AbstractEntity {
 	public void setSubtotalPrice(Double subtotalPrice) {
 		this.subtotalPrice = subtotalPrice;
 	}
-
+	
+	 @JsonIgnore
 	public Double getVolumeToDeliver() {
 		return volumeToDeliver;
 	}

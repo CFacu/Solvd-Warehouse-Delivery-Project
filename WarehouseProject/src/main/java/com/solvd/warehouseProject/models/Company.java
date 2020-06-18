@@ -69,16 +69,17 @@ public class Company extends AbstractEntity{
 		this.daysToClosestWarehouse = daysToClosestWarehouse;
 	}
 
-	public void deliverOrder(Truck truck, Order order) {
+	public List<Deposit> deliverOrder(Truck truck, Order order) {
+		List<Deposit> deposits = new ArrayList<Deposit>();
         if (trucks.contains(truck)) {
         	if (truck.getOrders().contains(order)) {
                 Warehouse warehouse = this.getClosestWarehouse();
                 Integer daysPassed = this.getDaysToClosestWarehouse();
                 Double moneyLost = 0.0;
-                LinkedList<OrderDetail> toDeliver = new LinkedList<OrderDetail>(order.sortOrderDetails()); //we could implement a priority queue with a comparator; i did the sorting using lambda expressions   
+                LinkedList<OrderDetail> toDeliver = new LinkedList<OrderDetail>(order.sortOrderDetails());    
                 OrderDetail orderDetail = toDeliver.poll();
-                while (orderDetail != null && warehouse != null) { //if orderDetail is null it means that there are no more orders to be delivered, if warehouse is null it means we have already visited all of them
-                	if (daysPassed >= orderDetail.getProduct().getDaysUntilDueDate()) {
+                while (orderDetail != null && warehouse != null) { 
+                	while (orderDetail != null && daysPassed >= orderDetail.getProduct().getDaysUntilDueDate()) {
                 		moneyLost += orderDetail.getVolumeToDeliver() / orderDetail.getProduct().getVolume() * orderDetail.getProduct().getPrice();
                 		LOGGER.info(orderDetail.getVolumeToDeliver()+ " u.v of the Product: "+ orderDetail.getProduct().getName() + " have expired.");
                 		orderDetail = toDeliver.poll(); 
@@ -86,14 +87,20 @@ public class Company extends AbstractEntity{
                 	if (orderDetail != null) { //i do this control because orderDetail can get a null value two lines above and if that happens some exceptions will be thrown when trying to access its fields
 	                	if (warehouse.getAvailableCapacity() > 0) {
 	                		if (warehouse.getAvailableCapacity() < orderDetail.getVolumeToDeliver()) {
-	                			LOGGER.info(warehouse.getAvailableCapacity()+" v.u of the Product: "+orderDetail.getProduct().getName()+ //here we should start building the string that'll be our output
+	                			LOGGER.info(warehouse.getAvailableCapacity()+" v.u of the Product: "+orderDetail.getProduct().getName()+ 
 	                    				" have been deposited in "+warehouse.getName());
 	                			orderDetail.setVolumeToDeliver(orderDetail.getVolumeToDeliver() - warehouse.getAvailableCapacity());
+	                			Deposit deposit = new Deposit (warehouse, orderDetail, warehouse.getAvailableCapacity());
+	                			deposits.add(deposit);
 	                			warehouse.setAvailableCapacity(0.0);
+	                			//update available capacity in db
 	                		} else {
 	                			LOGGER.info((orderDetail.getVolumeToDeliver())+" v.u of the Product: "+orderDetail.getProduct().getName()+ 
 	                    				" have been deposited in "+warehouse.getName());
 	                			warehouse.setAvailableCapacity(warehouse.getAvailableCapacity()-orderDetail.getVolumeToDeliver());
+	                			//update available capacity in db
+	                			Deposit deposit = new Deposit (warehouse, orderDetail, orderDetail.getVolumeToDeliver());
+	                			deposits.add(deposit);
 	                			orderDetail.setVolumeToDeliver(0.0);
 	                			orderDetail = toDeliver.poll();
 	                		}
@@ -106,6 +113,7 @@ public class Company extends AbstractEntity{
         		LOGGER.info("Money lost: $"+moneyLost);
         	}
         }
+        return deposits;
 	}
 	
  }

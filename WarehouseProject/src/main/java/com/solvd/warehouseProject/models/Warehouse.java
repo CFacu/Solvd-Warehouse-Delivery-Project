@@ -1,13 +1,11 @@
 package com.solvd.warehouseProject.models;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-//removed distance from company, added nextWarehouse, daysToNextWarehouse
 public class Warehouse extends AbstractEntity{
     private String name;
     private Double totalCapacity;
     private Double availableCapacity;
-    private List<OrderDetail> orderDetails;
     private Warehouse nextWarehouse;
     private Integer daysToNextWarehouse;
 
@@ -20,19 +18,12 @@ public class Warehouse extends AbstractEntity{
         this.availableCapacity = availableCapacity;
     }
     
-    public Warehouse(String name, Double totalCapacity, List<OrderDetail> orderDetails){
+    public Warehouse(String name, Double totalCapacity){
         this.name = name;
         this.totalCapacity = totalCapacity;
         this.availableCapacity = totalCapacity;
-        this.orderDetails = orderDetails;
     }
     
-    public Warehouse(String name, Double totalCapacity, Double availableCapacity, List<OrderDetail> orderDetails){
-        this.name = name;
-        this.totalCapacity = totalCapacity;
-        this.availableCapacity = availableCapacity;
-        this.orderDetails = orderDetails;
-    }
     
     public Warehouse(String name, Double totalCapacity, Double availableCapacity, Warehouse nextWarehouse, Integer daysToNextWarehouse){
         this.name = name;
@@ -49,7 +40,8 @@ public class Warehouse extends AbstractEntity{
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    @JsonIgnore
     public Double getTotalCapacity() {
 		return totalCapacity;
 	}
@@ -57,7 +49,8 @@ public class Warehouse extends AbstractEntity{
 	public void setTotalCapacity(Double totalCapacity) {
 		this.totalCapacity = totalCapacity;
 	}
-
+	
+	@JsonIgnore
     public Double getAvailableCapacity() {
         return availableCapacity;
     }
@@ -66,14 +59,7 @@ public class Warehouse extends AbstractEntity{
         this.availableCapacity = availableCapacity;
     }
 
-    public List<OrderDetail> getOrderDetails() {
-        return orderDetails;
-    }
-
-    public void setOrderDetails(List<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
-    }
-
+    @JsonIgnore
     public Warehouse getNextWarehouse() {
 		return nextWarehouse;
 	}
@@ -81,7 +67,8 @@ public class Warehouse extends AbstractEntity{
 	public void setNextWarehouse(Warehouse nextWarehouse) {
 		this.nextWarehouse = nextWarehouse;
 	}
-
+	
+	@JsonIgnore
 	public Integer getDaysToNextWarehouse() {
 		return daysToNextWarehouse;
 	}
