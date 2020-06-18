@@ -11,9 +11,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MySessionFactory {
+public class MyConnectionFactory {
 
-	private final static Logger LOGGER = LogManager.getLogger(MySessionFactory.class);
+	private final static Logger LOGGER = LogManager.getLogger(MyConnectionFactory.class);
 	
 	private static SqlSessionFactory sqlSessionFactory;
 
@@ -81,6 +81,10 @@ public class MySessionFactory {
 
 	public static IWarehouseDAO getWarehouseMapper() {
 		return getSessionFactory().openSession(true).getMapper(IWarehouseDAO.class);
+	}
+
+	public static IDepositDAO getDepositMapper() {
+		return getSessionFactory().openSession(true).getMapper(IDepositDAO.class);
 	}
 
 

@@ -1,17 +1,17 @@
 package com.solvd.warehouseProject.services;
 
-import com.solvd.warehouseProject.connection.MySessionFactory;
+import java.util.List;
+
+import com.solvd.warehouseProject.connection.MyConnectionFactory;
 import com.solvd.warehouseProject.daos.IPhoneDAO;
 import com.solvd.warehouseProject.models.Driver;
 import com.solvd.warehouseProject.models.Phone;
-
-import java.util.List;
 
 public class PhoneService {
     private IPhoneDAO phoneDAO;
 
     public PhoneService() {
-        phoneDAO = MySessionFactory.getPhoneMapper();
+        phoneDAO = MyConnectionFactory.getPhoneMapper();
     }
 
     public Phone get(Long id){

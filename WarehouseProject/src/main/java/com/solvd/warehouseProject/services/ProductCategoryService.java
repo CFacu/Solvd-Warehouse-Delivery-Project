@@ -1,17 +1,17 @@
 package com.solvd.warehouseProject.services;
 
-import com.solvd.warehouseProject.connection.MySessionFactory;
+import java.util.List;
+
+import com.solvd.warehouseProject.connection.MyConnectionFactory;
 import com.solvd.warehouseProject.daos.IProductCategoryDAO;
 import com.solvd.warehouseProject.models.ProductCategory;
-
-import java.util.List;
 
 public class ProductCategoryService {
 
 	private IProductCategoryDAO productCategoryDAO;
 	
 	public ProductCategoryService() {
-		productCategoryDAO =  MySessionFactory.getProductCategoryMapper();
+		productCategoryDAO =  MyConnectionFactory.getProductCategoryMapper();
 	}
 	
 	public ProductCategory get(Long id){

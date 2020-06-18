@@ -1,6 +1,6 @@
 package com.solvd.warehouseProject.services;
 
-import com.solvd.warehouseProject.connection.MySessionFactory;
+import com.solvd.warehouseProject.connection.MyConnectionFactory;
 import com.solvd.warehouseProject.daos.IWarehouseDAO;
 import com.solvd.warehouseProject.models.Company;
 import com.solvd.warehouseProject.models.Location;
@@ -13,7 +13,7 @@ public class WarehouseService {
 	private IWarehouseDAO warehouseDAO;
 
 	public WarehouseService() {
-		warehouseDAO =  MySessionFactory.getWarehouseMapper();
+		warehouseDAO =  MyConnectionFactory.getWarehouseMapper();
 	}
 	
 	public Warehouse get(Long id){

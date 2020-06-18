@@ -1,19 +1,18 @@
 package com.solvd.warehouseProject.services;
 
-import com.solvd.warehouseProject.connection.MySessionFactory;
+import java.util.List;
+
+import com.solvd.warehouseProject.connection.MyConnectionFactory;
 import com.solvd.warehouseProject.daos.IOrderDAO;
 import com.solvd.warehouseProject.models.Order;
-import com.solvd.warehouseProject.models.OrderDetail;
 import com.solvd.warehouseProject.models.Truck;
-
-import java.util.List;
 
 public class OrderService {
 	
 	private IOrderDAO orderDAO;
 
 	public OrderService() {
-		orderDAO =  MySessionFactory.getOrderMapper();
+		orderDAO =  MyConnectionFactory.getOrderMapper();
 	}
 	
 	public Order get(Long id){

@@ -1,18 +1,18 @@
 package com.solvd.warehouseProject.services;
 
-import com.solvd.warehouseProject.connection.MySessionFactory;
+import java.util.List;
+
+import com.solvd.warehouseProject.connection.MyConnectionFactory;
 import com.solvd.warehouseProject.daos.ICityDAO;
 import com.solvd.warehouseProject.models.City;
 import com.solvd.warehouseProject.models.Country;
-
-import java.util.List;
 
 public class CityService {
 
     private ICityDAO cityDAO;
 
     public CityService() {
-        cityDAO = MySessionFactory.getCityMapper();
+        cityDAO = MyConnectionFactory.getCityMapper();
     }
 
     public City get(Long id){

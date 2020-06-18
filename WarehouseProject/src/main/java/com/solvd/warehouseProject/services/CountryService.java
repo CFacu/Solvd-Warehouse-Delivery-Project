@@ -1,17 +1,17 @@
 package com.solvd.warehouseProject.services;
 
-import com.solvd.warehouseProject.connection.MySessionFactory;
+import java.util.List;
+
+import com.solvd.warehouseProject.connection.MyConnectionFactory;
 import com.solvd.warehouseProject.daos.ICountryDAO;
 import com.solvd.warehouseProject.models.Country;
-
-import java.util.List;
 
 public class CountryService {
 
 	private ICountryDAO countryDAO;
 
 	public CountryService() {
-		countryDAO =  MySessionFactory.getCountryMapper();
+		countryDAO =  MyConnectionFactory.getCountryMapper();
 	}
 	
 	public Country get(Long id){

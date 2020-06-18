@@ -8,6 +8,7 @@
         <typeAlias type="com.solvd.warehouseProject.models.City" alias="City"/>
         <typeAlias type="com.solvd.warehouseProject.models.Company" alias="Company"/>
         <typeAlias type="com.solvd.warehouseProject.models.Country" alias="Country"/>
+        <typeAlias type="com.solvd.warehouseProject.models.Deposit" alias="Deposit"/>
         <typeAlias type="com.solvd.warehouseProject.models.Driver" alias="Driver"/>
         <typeAlias type="com.solvd.warehouseProject.models.Location" alias="Location"/>
         <typeAlias type="com.solvd.warehouseProject.models.Order" alias="Order"/>
@@ -33,6 +34,7 @@
         <mapper resource="mappers/CityMapper.xml"/>
         <mapper resource="mappers/CompanyMapper.xml"/>
         <mapper resource="mappers/CountryMapper.xml"/>
+        <mapper resource="mappers/DepositMapper.xml"/>
         <mapper resource="mappers/DriverMapper.xml"/>
         <mapper resource="mappers/LocationMapper.xml"/>
         <mapper resource="mappers/OrderDetailMapper.xml"/>

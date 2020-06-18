@@ -1,16 +1,16 @@
 package com.solvd.warehouseProject.services;
 
-import com.solvd.warehouseProject.connection.MySessionFactory;
+import java.util.List;
+
+import com.solvd.warehouseProject.connection.MyConnectionFactory;
 import com.solvd.warehouseProject.daos.IDriverDAO;
 import com.solvd.warehouseProject.models.Driver;
-
-import java.util.List;
 
 public class DriverService {
     private IDriverDAO driverDAO;
 
     public DriverService() {
-        driverDAO = MySessionFactory.getDriverMapper();
+        driverDAO = MyConnectionFactory.getDriverMapper();
     }
 
     public Driver get(Long id) {
