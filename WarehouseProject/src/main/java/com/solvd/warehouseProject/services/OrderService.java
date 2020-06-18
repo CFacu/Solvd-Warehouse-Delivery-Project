@@ -10,13 +10,17 @@ import com.solvd.warehouseProject.models.Truck;
 public class OrderService {
 	
 	private IOrderDAO orderDAO;
+	private OrderDetailService detailService;
 
 	public OrderService() {
 		orderDAO =  MyConnectionFactory.getOrderMapper();
+		detailService = new OrderDetailService();
 	}
 	
 	public Order get(Long id){
-		return orderDAO.get(id);
+		Order order = orderDAO.get(id);
+		order.setOrderDetails(detailService.getAllByOrderId(order.getId()));
+		return order;
 	}
 	
 	public void insert(Order order) {
@@ -24,7 +28,9 @@ public class OrderService {
 	}
 
 	public List<Order> getAll() {
-		return orderDAO.getAll();
+		List<Order> orders = orderDAO.getAll();
+		orders.forEach(x -> x.setOrderDetails(detailService.getAllByOrderId(x.getId())));
+		return orders;
 	}
 
 	public void delete(Long id) {
@@ -45,5 +51,11 @@ public class OrderService {
 
 	public void addToTruck(Truck truck, Order order) {
 		orderDAO.addToTruck(truck, order);
+	}
+
+	public List<Order> getAllByTruckId(Long id) {
+		List<Order> orders = orderDAO.getAllByTruckId(id);
+		orders.forEach(x -> x.setOrderDetails(detailService.getAllByOrderId(x.getId())));
+		return orders;
 	}
 }

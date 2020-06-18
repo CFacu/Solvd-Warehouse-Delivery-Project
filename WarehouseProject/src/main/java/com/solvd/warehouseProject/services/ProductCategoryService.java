@@ -33,4 +33,8 @@ public class ProductCategoryService {
 	public void update(ProductCategory productCategory, Long id) {
 		productCategoryDAO.update(productCategory, id);
 	}
+
+	public ProductCategory getByProductId(Long id) {
+		return productCategoryDAO.getByProductId(id);
+	}
 }

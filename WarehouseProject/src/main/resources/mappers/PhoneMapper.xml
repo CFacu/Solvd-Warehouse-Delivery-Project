@@ -6,8 +6,6 @@
     <resultMap id="PhoneResultMap" type="Phone" autoMapping="false">
         <id property="id" column="id"/>
         <result property="number" column="number"/>
-        <association property="type" resultMap="com.solvd.warehouseProject.daos.IPhoneTypeDAO.PhoneTypeResultMap"/>
-        <association property="driver" resultMap="com.solvd.warehouseProject.daos.IDriverDAO.DriverResultMap"/>
     </resultMap>
     <select id="get" resultMap="PhoneResultMap">
         <![CDATA[
@@ -41,4 +39,9 @@
             UPDATE Phones SET drivers_id = #{driver.id} WHERE id = #{phone.id}
         ]]>
     </update>
+    <select id="getAllByDriverId" resultMap="PhoneResultMap">
+        <![CDATA[
+            SELECT * FROM Phones WHERE drivers_id = #{id}
+        ]]>
+    </select>
 </mapper>

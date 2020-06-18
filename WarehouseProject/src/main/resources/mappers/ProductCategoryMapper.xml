@@ -35,4 +35,10 @@
             SELECT * FROM Product_Categories;
         ]]>
     </select>
+    <select id="getByProductId" resultMap="ProductCategoryResultMap">
+        <![CDATA[
+            SELECT pc.id, pc.name, pc.description FROM Product_Categories pc
+            LEFT JOIN Products p ON pc.id = p.product_categories_id WHERE p.id = #{id}
+        ]]>
+    </select>
 </mapper>

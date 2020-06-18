@@ -8,7 +8,6 @@
         <result property="street" column="street"/>
         <result property="number" column="number"/>
         <result property="code" column="code"/>
-        <association property="city" resultMap="com.solvd.warehouseProject.daos.ICityDAO.CityResultMap"/>
     </resultMap>
     <select id="get" resultMap="LocationResultMap">
         <![CDATA[
@@ -42,4 +41,9 @@
             UPDATE Locations SET cities_id = #{city.id} WHERE id = #{location.id}
         ]]>
     </update>
+    <select id="getAllByCityId" resultMap="LocationResultMap">
+        <![CDATA[
+            SELECT * FROM Locations WHERE cities_id = #{id}
+        ]]>
+    </select>
 </mapper>

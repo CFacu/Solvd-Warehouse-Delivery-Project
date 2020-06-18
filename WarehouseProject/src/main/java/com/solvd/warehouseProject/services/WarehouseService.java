@@ -43,4 +43,13 @@ public class WarehouseService {
 	public void addToCompany(Company company, Warehouse warehouse) {
 		warehouseDAO.addToCompany(company, warehouse);
 	}
+
+	public Warehouse getByLocationId(Long id) {
+		return warehouseDAO.getByLocationId(id);
+	}
+
+	public List<Warehouse> getAllByCompanyId(Long id) {
+		return warehouseDAO.getAllByCompanyId(id);
+	}
+
 }

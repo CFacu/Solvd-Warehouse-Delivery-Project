@@ -10,17 +10,23 @@ import com.solvd.warehouseProject.models.Location;
 public class LocationService {
 
     private ILocationDAO locationDAO;
+    private WarehouseService warehouseService;
 
     public LocationService() {
         locationDAO = MyConnectionFactory.getLocationMapper();
+        warehouseService = new WarehouseService();
     }
 
     public Location get(Long id){
-        return locationDAO.get(id);
+        Location location = locationDAO.get(id);
+        location.setWarehouse(warehouseService.getByLocationId(location.getId()));
+        return location;
     }
 
     public List<Location> getAll() {
-        return locationDAO.getAll();
+        List<Location> locations = locationDAO.getAll();
+        locations.forEach(x -> x.setWarehouse(warehouseService.getByLocationId(x.getId())));
+        return locations;
     }
 
     public void insert(Location location) {
@@ -38,5 +44,11 @@ public class LocationService {
     public void addToCity(City city, Location location) {
         locationDAO.addToCity(city, location);
         city.addLocation(location);
+    }
+
+    public List<Location> getAllByCityId(Long id) {
+        List<Location> locations = locationDAO.getAllByCityId(id);
+        locations.forEach(x -> x.setWarehouse(warehouseService.getByLocationId(x.getId())));
+        return locations;
     }
 }

@@ -6,9 +6,6 @@
     <resultMap id="TruckResultMap" type="Truck" autoMapping="false">
         <id property="id" column="id"/>
         <result property="capacity" column="capacity"/>
-        <association property="company" resultMap="com.solvd.warehouseProject.daos.ICompanyDAO.CompanyResultMap"/>
-        <collection property="drivers" ofType="Driver"  resultMap="com.solvd.warehouseProject.daos.IDriverDAO.DriverResultMap" columnPrefix="drivers_"/>
-        <collection property="orders" ofType="Order"  resultMap="com.solvd.warehouseProject.daos.IOrderDAO.OrderResultMap" columnPrefix="orders_"/>
     </resultMap>
     <select id="get" resultMap="TruckResultMap">
         <![CDATA[
@@ -42,4 +39,9 @@
             UPDATE Trucks SET companies_id = #{company.id} WHERE id = #{truck.id}
         ]]>
     </update>
+    <select id="getAllByCompanyId" resultMap="TruckResultMap">
+        <![CDATA[
+            SELECT * FROM Trucks WHERE companies_id = #{id}
+        ]]>
+    </select>
 </mapper>

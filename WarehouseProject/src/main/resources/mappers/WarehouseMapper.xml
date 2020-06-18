@@ -9,8 +9,6 @@
         <result property="totalCapacity" column="total_capacity"/>
         <result property="availableCapacity" column="available_capacity"/>
         <result property="daysToNextWarehouse" column="days_to_next_warehouse"/>
-        <association property="nextWarehouse" resultMap="com.solvd.warehouseProject.daos.IProductCategoryDAO.WarehouseResultMap"/>
-        <collection property="orderDetails" ofType="OrderDetail"  resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailResultMap" columnPrefix="order_details_"/>
     </resultMap>
     <select id="get" resultMap="WarehouseResultMap">
         <![CDATA[
@@ -50,4 +48,14 @@
             UPDATE Warehouses SET companies_id = #{company.id} WHERE id = #{warehouse.id}
         ]]>
     </update>
+    <select id="getByLocationId" resultMap="WarehouseResultMap">
+        <![CDATA[
+            SELECT * FROM Warehouses WHERE locations_id = #{id}
+        ]]>
+    </select>
+    <select id="getAllByCompanyId" resultMap="WarehouseResultMap">
+        <![CDATA[
+            SELECT * FROM Warehouses WHERE companies_id = #{id}
+        ]]>
+    </select>
 </mapper>

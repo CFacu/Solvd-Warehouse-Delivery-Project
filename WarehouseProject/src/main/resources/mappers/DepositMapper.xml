@@ -5,8 +5,8 @@
 <mapper namespace="com.solvd.warehouseProject.daos.IDepositDAO">
     <resultMap id="DepositResultMap" type="Deposit" autoMapping="false">
         <result property="volumeDeposited" column="volume"/>
-        <association property="warehouse" resultMap="com.solvd.warehouseProject.daos.IWarehouseDAO.WarehouseResultMap"/> 
-        <association property="orderDetail" resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailResultMap"/>                       
+        <association property="warehouse" resultMap="com.solvd.warehouseProject.daos.IWarehouseDAO.WarehouseResultMap"/>
+        <association property="orderDetail" resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailResultMap"/>
     </resultMap>
     <select id="get" resultMap="DepositResultMap">
         <![CDATA[

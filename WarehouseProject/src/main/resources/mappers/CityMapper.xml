@@ -6,7 +6,6 @@
     <resultMap id="CityResultMap" type="City" autoMapping="false">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
-        <association property="country" resultMap="com.solvd.warehouseProject.daos.ICountryDAO.CountryResultMap"/>
     </resultMap>
     <select id="get" resultMap="CityResultMap">
         <![CDATA[
@@ -40,4 +39,10 @@
             UPDATE Cities SET countries_id = #{country.id} WHERE id = #{city.id}
         ]]>
     </update>
+
+    <select id="getAllByCountryId" resultMap="CityResultMap">
+        <![CDATA[
+            SELECT * FROM Cities WHERE countries_id = #{id}
+        ]]>
+    </select>
 </mapper>

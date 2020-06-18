@@ -10,17 +10,29 @@ import java.util.List;
 public class TruckService {
 
     private ITruckDAO truckDAO;
+    private OrderService orderService;
+    private DriverService driverService;
 
     public TruckService() {
         truckDAO = MyConnectionFactory.getTruckMapper();
+        orderService = new OrderService();
+        driverService = new DriverService();
     }
 
     public Truck get(Long id){
-        return truckDAO.get(id);
+        Truck truck = truckDAO.get(id);
+        truck.setOrders(orderService.getAllByTruckId(truck.getId()));
+        truck.setDrivers(driverService.getAllByTruckId(truck.getId()));
+        return truck;
     }
 
     public List<Truck> getAll() {
-        return truckDAO.getAll();
+        List<Truck> trucks = truckDAO.getAll();
+        trucks.forEach(x -> {
+            x.setOrders(orderService.getAllByTruckId(x.getId()));
+            x.setDrivers(driverService.getAllByTruckId(x.getId()));
+        });
+        return trucks;
     }
 
     public void insert(Truck truck) {
@@ -37,5 +49,14 @@ public class TruckService {
 
     public void addToCompany(Company company, Truck truck) {
         truckDAO.addToCompany(company, truck);
+    }
+
+    public List<Truck> getAllByCompanyId(Long id){
+        List<Truck> trucks = truckDAO.getAllByCompanyId(id);
+        trucks.forEach(x -> {
+            x.setOrders(orderService.getAllByTruckId(x.getId()));
+            x.setDrivers(driverService.getAllByTruckId(x.getId()));
+        });
+        return trucks;
     }
 }

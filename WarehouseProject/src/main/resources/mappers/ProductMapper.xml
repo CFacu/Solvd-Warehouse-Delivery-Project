@@ -10,7 +10,6 @@
         <result property="volume" column="volume"/>
         <result property="dueDate" column="due_date"/>
         <result property="price" column="price"/>
-        <association property="category" resultMap="com.solvd.warehouseProject.daos.IProductCategoryDAO.ProductCategoryResultMap"/>
     </resultMap>
     <select id="get" resultMap="ProductResultMap">
         <![CDATA[
@@ -37,6 +36,13 @@
     <select id="getAll" resultMap="ProductResultMap">
         <![CDATA[
             SELECT * FROM Products;
+        ]]>
+    </select>
+    <select id="getByOrderDetailId" resultMap="ProductResultMap">
+        <![CDATA[
+            SELECT p.id, p.name, p.description, p.volume, p.due_date, p.price
+            FROM Products p LEFT JOIN Orders_Details o
+            ON p.id = o.products_id WHERE o.id = #{id}
         ]]>
     </select>
 </mapper>
