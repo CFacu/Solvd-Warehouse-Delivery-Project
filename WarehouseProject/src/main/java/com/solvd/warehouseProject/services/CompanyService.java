@@ -1,17 +1,17 @@
 package com.solvd.warehouseProject.services;
 
-import com.solvd.warehouseProject.connection.MySessionFactory;
+import java.util.List;
+
+import com.solvd.warehouseProject.connection.MyConnectionFactory;
 import com.solvd.warehouseProject.daos.ICompanyDAO;
 import com.solvd.warehouseProject.models.Company;
-
-import java.util.List;
 
 public class CompanyService {
 
 	private ICompanyDAO companyDAO;
 	
 	public CompanyService() {
-		companyDAO =  MySessionFactory.getCompanyMapper();
+		companyDAO =  MyConnectionFactory.getCompanyMapper();
 	}
 	
 	public Company get(Long id){

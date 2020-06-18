@@ -1,6 +1,6 @@
 package com.solvd.warehouseProject.services;
 
-import com.solvd.warehouseProject.connection.MySessionFactory;
+import com.solvd.warehouseProject.connection.MyConnectionFactory;
 import com.solvd.warehouseProject.daos.ITruckDAO;
 import com.solvd.warehouseProject.models.Company;
 import com.solvd.warehouseProject.models.Truck;
@@ -12,7 +12,7 @@ public class TruckService {
     private ITruckDAO truckDAO;
 
     public TruckService() {
-        truckDAO = MySessionFactory.getTruckMapper();
+        truckDAO = MyConnectionFactory.getTruckMapper();
     }
 
     public Truck get(Long id){

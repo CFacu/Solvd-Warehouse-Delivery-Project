@@ -74,9 +74,9 @@ public class Runner {
 		//setting next warehouses & days to next
 		warehouseA.setNextWarehouse(warehouseB);
 		warehouseA.setDaysToNextWarehouse(2);
-		/*WarehouseService ws = new WarehouseService();
+		/**/WarehouseService ws = new WarehouseService();
 		ws.insert(warehouseB);
-		ws.insert(warehouseA);*/
+		ws.insert(warehouseA);
 		
 		//adding warehouses to company & closest warehouse
 		warehouseB.setNextWarehouse(warehouseC);
@@ -121,8 +121,6 @@ public class Runner {
 		
 		//------- JSON OUTPUT ---------
 		JsonParser.objectListToJson(deposits, "src/main/resources/deposits-output.json");
-		
-		
 
 /*		Country argentina = new Country();
 		argentina.setName("Argentina");

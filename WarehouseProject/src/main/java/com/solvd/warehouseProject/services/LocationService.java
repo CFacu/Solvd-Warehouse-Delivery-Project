@@ -1,18 +1,18 @@
 package com.solvd.warehouseProject.services;
 
-import com.solvd.warehouseProject.connection.MySessionFactory;
+import java.util.List;
+
+import com.solvd.warehouseProject.connection.MyConnectionFactory;
 import com.solvd.warehouseProject.daos.ILocationDAO;
 import com.solvd.warehouseProject.models.City;
 import com.solvd.warehouseProject.models.Location;
-
-import java.util.List;
 
 public class LocationService {
 
     private ILocationDAO locationDAO;
 
     public LocationService() {
-        locationDAO = MySessionFactory.getLocationMapper();
+        locationDAO = MyConnectionFactory.getLocationMapper();
     }
 
     public Location get(Long id){
