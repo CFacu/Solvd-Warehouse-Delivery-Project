@@ -2,6 +2,8 @@ package com.solvd.warehouseProject.models;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Product extends AbstractEntity{
     private String name;
     private String description;
@@ -30,7 +32,8 @@ public class Product extends AbstractEntity{
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    @JsonIgnore
     public String getDescription() {
         return description;
     }
@@ -38,7 +41,8 @@ public class Product extends AbstractEntity{
     public void setDescription(String description) {
         this.description = description;
     }
-
+    
+    @JsonIgnore
     public Double getVolume() {
         return volume;
     }
@@ -46,15 +50,17 @@ public class Product extends AbstractEntity{
     public void setVolume(Double volume) {
         this.volume = volume;
     }
-
+    
+    @JsonIgnore
     public LocalDate getDueDate() {
         return dueDate;
     }
-
+    
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
     }
-
+    
+    @JsonIgnore
     public Double getPrice() {
         return price;
     }
@@ -62,7 +68,8 @@ public class Product extends AbstractEntity{
     public void setPrice(Double price) {
         this.price = price;
     }
-
+    
+    @JsonIgnore
     public ProductCategory getProductCategory() {
         return category;
     }
@@ -70,7 +77,8 @@ public class Product extends AbstractEntity{
 	public void setCategory(ProductCategory category) {
 		this.category = category;
 	}
-
+	
+	@JsonIgnore
 	public Integer getDaysUntilDueDate() {
 		return daysUntilDueDate;
 	}

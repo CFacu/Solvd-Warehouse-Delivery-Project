@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.solvd.warehouseProject.exceptions.OrderVolumeExceededException;
 import com.solvd.warehouseProject.models.*;
+import com.solvd.warehouseProject.parsers.JsonParser;
 import com.solvd.warehouseProject.services.*;
 
 import java.util.List;
@@ -18,35 +19,35 @@ public class Runner {
 	public static void main(String[] args) {
 		//creating company
 		Company company = new Company("The Food Company");
-		CompanyService companyService = new CompanyService();
-		companyService.insert(company);
+		//CompanyService companyService = new CompanyService();
+		//companyService.insert(company);
 
 		//create a product category
 		ProductCategory categoryA = new ProductCategory("Food", "All food products");
-		ProductCategoryService prodCategoryService = new ProductCategoryService();
-		prodCategoryService.insert(categoryA);
+		//ProductCategoryService prodCategoryService = new ProductCategoryService();
+		//prodCategoryService.insert(categoryA);
 
 		//initialize some products
 		Product productA = new Product ("Rice", "White refined rice", 0.5, LocalDate.parse("2020-06-17"), 2.50, categoryA);
 		Product productB = new Product ("Flour", "White refined flour", 0.3, LocalDate.parse("2020-06-16"), 2.25, categoryA);
 		Product productC = new Product ("Oatmeal", "Processed oatmeal", 0.6, LocalDate.parse("2020-06-20"), 5.0, categoryA);
 		Product productD = new Product ("Sugar", "Refined sugar", 1.5, LocalDate.parse("2020-06-25"), 4.5, categoryA);
-		ProductService productService = new ProductService();
+		/*ProductService productService = new ProductService();
 		productService.insert(productA);
 		productService.insert(productB);
 		productService.insert(productC);
-		productService.insert(productD);
+		productService.insert(productD);*/
 		
 		//initialize order details for each product
 		OrderDetail orderDetailA = new OrderDetail (productA, 2400);
 		OrderDetail orderDetailB = new OrderDetail (productB, 2500);
 		OrderDetail orderDetailC = new OrderDetail (productC, 1800);
 		OrderDetail orderDetailD = new OrderDetail (productD, 800);
-		OrderDetailService detailService = new OrderDetailService();
+		/*OrderDetailService detailService = new OrderDetailService();
 		detailService.insert(orderDetailA);
 		detailService.insert(orderDetailB);
 		detailService.insert(orderDetailC);
-		detailService.insert(orderDetailD);
+		detailService.insert(orderDetailD);*/
 		
 		//creating an order and adding those order details to it
 		Order orderA = new Order ();
@@ -56,12 +57,12 @@ public class Runner {
 		orderA.addOrderDetail(orderDetailC);
 		orderA.addOrderDetail(orderDetailD);
 		
-		OrderService orderService = new OrderService();
+		/*OrderService orderService = new OrderService();
 		orderService.insert(orderA);
 		detailService.addToOrder(orderDetailA,orderA);
 		detailService.addToOrder(orderDetailB,orderA);
 		detailService.addToOrder(orderDetailC,orderA);
-		detailService.addToOrder(orderDetailD,orderA);
+		detailService.addToOrder(orderDetailD,orderA);*/
 				
 		//creating warehouses			
 		Warehouse warehouseA = new Warehouse ("Warehouse A", 1000.0, 800.0);		
@@ -73,9 +74,9 @@ public class Runner {
 		//setting next warehouses & days to next
 		warehouseA.setNextWarehouse(warehouseB);
 		warehouseA.setDaysToNextWarehouse(2);
-		WarehouseService ws = new WarehouseService();
+		/*WarehouseService ws = new WarehouseService();
 		ws.insert(warehouseB);
-		ws.insert(warehouseA);
+		ws.insert(warehouseA);*/
 		
 		//adding warehouses to company & closest warehouse
 		warehouseB.setNextWarehouse(warehouseC);
@@ -88,7 +89,7 @@ public class Runner {
 		company.setDaysToClosestWarehouse(3);
 
 		company.getWarehouses().add(warehouseA);
-		ws.addToCompany(company, warehouseA);
+		//ws.addToCompany(company, warehouseA);
 
 		company.getWarehouses().add(warehouseB);
 		company.getWarehouses().add(warehouseC);
@@ -98,9 +99,9 @@ public class Runner {
 		//creating a truck & adding it to the company
 		Truck truckA = new Truck(5000.0);
 		company.getTrucks().add(truckA);
-		TruckService ts = new TruckService();
+		/*TruckService ts = new TruckService();
 		ts.insert(truckA);
-		ts.addToCompany(company, truckA);
+		ts.addToCompany(company, truckA);*/
 		
 		//adding order to truck		
 		try {
@@ -108,21 +109,20 @@ public class Runner {
 		} catch (OrderVolumeExceededException e) {
 			LOGGER.error(e);
 		}
-		orderService.addToTruck(truckA, orderA);
+		//orderService.addToTruck(truckA, orderA);
 		
-		orderA.getOrderDetails().forEach(orderDetail -> LOGGER.info(orderDetail.getProduct().getName()));
 
-		orderA.getOrderDetails().forEach(orderDetail -> LOGGER.info(orderDetail.getSubtotalVolume()));
-
-		orderA.getOrderDetails().forEach(orderDetail -> LOGGER.info(orderDetail.getProduct().getName()));
-
-		List<OrderDetail> sortedOrderDetails = orderA.sortOrderDetails();
-		LOGGER.info("Type of products sorted by totalPrice/daysToDueDate");
-		sortedOrderDetails.forEach(od -> LOGGER.info(od.getProduct().getName()));
 
 		LOGGER.info("Starting delivery");
-		company.deliverOrder(truckA, orderA);
+		List<Deposit> deposits = company.deliverOrder(truckA, orderA);
 		LOGGER.info("End of delivery");
+		
+		deposits.forEach(dep -> LOGGER.info(dep));
+		
+		//------- JSON OUTPUT ---------
+		JsonParser.objectListToJson(deposits, "src/main/resources/deposits-output.json");
+		
+		
 
 /*		Country argentina = new Country();
 		argentina.setName("Argentina");

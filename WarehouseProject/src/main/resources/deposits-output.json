@@ -1,0 +1,41 @@
+[ {
+  "warehouse" : {
+    "name" : "Warehouse A"
+  },
+  "orderDetail" : {
+    "product" : {
+      "name" : "Flour"
+    }
+  },
+  "volumeDeposited" : 750.0
+}, {
+  "warehouse" : {
+    "name" : "Warehouse A"
+  },
+  "orderDetail" : {
+    "product" : {
+      "name" : "Oatmeal"
+    }
+  },
+  "volumeDeposited" : 50.0
+}, {
+  "warehouse" : {
+    "name" : "Warehouse B"
+  },
+  "orderDetail" : {
+    "product" : {
+      "name" : "Oatmeal"
+    }
+  },
+  "volumeDeposited" : 700.0
+}, {
+  "warehouse" : {
+    "name" : "Warehouse C"
+  },
+  "orderDetail" : {
+    "product" : {
+      "name" : "Sugar"
+    }
+  },
+  "volumeDeposited" : 1200.0
+} ]
