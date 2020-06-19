@@ -9,5 +9,4 @@ import com.solvd.warehouseProject.models.Warehouse;
 public interface IDepositDAO extends IDAO<Deposit>{
 
 	Deposit get(@Param("warehouse")Warehouse warehouse,@Param("orderDetail") OrderDetail orderDetail);
-
 }
