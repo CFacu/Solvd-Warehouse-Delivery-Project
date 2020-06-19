@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 public class JaxbParser {
 private final static Logger LOGGER = LogManager.getLogger(JaxbParser.class);
 	
-	public static <T> T jabxXmlToObject (Class<T> genericClass, String inputFilePath) {
+	public static <T> T jaxbXmlToObject(Class<T> genericClass, String inputFilePath) {
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(genericClass);
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
@@ -26,7 +26,7 @@ private final static Logger LOGGER = LogManager.getLogger(JaxbParser.class);
 		return null;
 	}
 	
-	public static <T> void jabxObjectToXml (Class<T> genericClass, T t, String outputFilePath) {
+	public static <T> void jaxbObjectToXml(Class<T> genericClass, T t, String outputFilePath) {
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(genericClass);
 			Marshaller marshaller = jaxbContext.createMarshaller();

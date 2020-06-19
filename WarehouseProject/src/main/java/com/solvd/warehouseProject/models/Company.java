@@ -87,12 +87,12 @@ public class Company extends AbstractEntity{
 
 	public List<Deposit> deliverOrder(Truck truck, Order order) {
 		List<Deposit> deposits = new ArrayList<Deposit>();
-		//DepositService depositService = new DepositService();
+		DepositService depositService = new DepositService();
         if (trucks.contains(truck)) {
         	if (truck.getOrders().contains(order)) {
                 Warehouse warehouse = this.getClosestWarehouse();
                 Integer daysPassed = this.getDaysToClosestWarehouse();
-                //WarehouseService warehouseService = new WarehouseService();
+                WarehouseService warehouseService = new WarehouseService();
                 Double moneyLost = 0.0;
                 LinkedList<OrderDetail> toDeliver = new LinkedList<OrderDetail>(order.sortOrderDetails());    
                 OrderDetail orderDetail = toDeliver.poll();
@@ -111,12 +111,12 @@ public class Company extends AbstractEntity{
 	                			Deposit deposit = new Deposit (warehouse, orderDetail, warehouse.getAvailableCapacity());
 	                			deposits.add(deposit);
 	                			warehouse.setAvailableCapacity(0.0);
-	                			//warehouseService.updateAvailableCapacity(warehouse);
+	                			warehouseService.updateAvailableCapacity(warehouse);
 	                		} else {
 	                			LOGGER.info((orderDetail.getVolumeToDeliver())+" m3 of the Product: "+orderDetail.getProduct().getName()+ 
 	                    				" have been deposited in "+warehouse.getName());
 	                			warehouse.setAvailableCapacity(warehouse.getAvailableCapacity()-orderDetail.getVolumeToDeliver());
-	                			//warehouseService.updateAvailableCapacity(warehouse);
+	                			warehouseService.updateAvailableCapacity(warehouse);
 	                			Deposit deposit = new Deposit (warehouse, orderDetail, orderDetail.getVolumeToDeliver());
 	                			deposits.add(deposit);
 	                			orderDetail.setVolumeToDeliver(0.0);
@@ -131,7 +131,7 @@ public class Company extends AbstractEntity{
         		LOGGER.info("Money lost: $"+moneyLost);
         	}
         }
-        //deposits.forEach(dep -> depositService.insert(dep));
+        deposits.forEach(depositService::insert);
         return deposits;
 	}
 	
