@@ -17,7 +17,7 @@
     </select>
     <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
         <![CDATA[
-            INSERT INTO Companies (first_name, last_name, age, birth)
+            INSERT INTO Drivers (first_name, last_name, age, birth)
             VALUES (#{firstName}, #{lastName}, #{age}, #{birthday})
         ]]>
     </insert>

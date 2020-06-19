@@ -19,19 +19,19 @@ public class Product extends AbstractEntity{
     private Double volume;
     private LocalDate dueDate;
     private Double price;
-    private ProductCategory category;
+    private ProductCategory productCategory;
     private Integer daysUntilDueDate;
 
     public Product() {
     }
 
-    public Product(String name, String description, Double volume, LocalDate dueDate, Double price, ProductCategory category) {
+    public Product(String name, String description, Double volume, LocalDate dueDate, Double price, ProductCategory productCategory) {
         this.name = name;
         this.description = description;
         this.volume = volume;
         this.dueDate = dueDate;
         this.price = price;
-        this.category = category;
+        this.productCategory = productCategory;
     }
     
     @XmlElement(name="name")
@@ -87,11 +87,11 @@ public class Product extends AbstractEntity{
     @XmlElement(name="category")
     @JsonIgnore
     public ProductCategory getProductCategory() {
-        return category;
+        return productCategory;
     }
 
-	public void setCategory(ProductCategory category) {
-		this.category = category;
+	public void setProductCategory(ProductCategory productCategory) {
+		this.productCategory = productCategory;
 	}
 	
 	@XmlTransient
