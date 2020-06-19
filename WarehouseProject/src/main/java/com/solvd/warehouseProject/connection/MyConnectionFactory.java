@@ -63,10 +63,6 @@ public class MyConnectionFactory {
 		return getSessionFactory().openSession(true).getMapper(IPhoneDAO.class);
 	}
 
-	public static IPhoneTypeDAO getPhoneTypeMapper() {
-		return getSessionFactory().openSession(true).getMapper(IPhoneTypeDAO.class);
-	}
-
 	public static IProductCategoryDAO getProductCategoryMapper() {
 		return getSessionFactory().openSession(true).getMapper(IProductCategoryDAO.class);
 	}

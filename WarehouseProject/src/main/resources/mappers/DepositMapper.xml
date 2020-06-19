@@ -10,7 +10,13 @@
     </resultMap>
     <select id="get" resultMap="DepositResultMap">
         <![CDATA[
-            SELECT * FROM Deposits WHERE warehouses_id = #{warehouse.id} AND orders_details_id = #{orderDetail.id}
+            SELECT * FROM Deposits d 
+            LEFT JOIN warehouses w
+            ON d.warehouses_id = w.id
+            LEFT JOIN orders_details od
+            ON d.orders_details_id = od.id
+            WHERE warehouses_id = #{warehouse.id} AND orders_details_id = #{orderDetail.id}
+            
         ]]>
     </select>
     <insert id = "insert">
