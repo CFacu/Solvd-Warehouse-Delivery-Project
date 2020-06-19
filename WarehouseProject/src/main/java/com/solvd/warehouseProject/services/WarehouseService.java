@@ -51,5 +51,9 @@ public class WarehouseService {
 	public List<Warehouse> getAllByCompanyId(Long id) {
 		return warehouseDAO.getAllByCompanyId(id);
 	}
+	
+	public void updateAvailableCapacity(Warehouse warehouse) {
+		warehouseDAO.updateAvailableCapacity(warehouse);
+	}
 
 }

@@ -48,6 +48,11 @@
             UPDATE Warehouses SET companies_id = #{company.id} WHERE id = #{warehouse.id}
         ]]>
     </update>
+    <update id="updateAvailableCapacity">
+    <![CDATA[
+            UPDATE Warehouses SET available_capacity = #{warehouse.availableCapacity} WHERE id = #{warehouse.id}
+        ]]>
+    </update>
     <select id="getByLocationId" resultMap="WarehouseResultMap">
         <![CDATA[
             SELECT * FROM Warehouses WHERE locations_id = #{id}

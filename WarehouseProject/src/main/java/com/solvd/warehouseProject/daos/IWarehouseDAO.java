@@ -12,4 +12,5 @@ public interface IWarehouseDAO extends IDAO<Warehouse> {
     void addToCompany(@Param("company")Company company, @Param("warehouse")Warehouse warehouse);
     Warehouse getByLocationId(@Param("id")Long id);
     List<Warehouse> getAllByCompanyId(@Param("id")Long id);
+    void updateAvailableCapacity(@Param("warehouse")Warehouse warehouse);
 }
