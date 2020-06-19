@@ -1,7 +1,13 @@
 package com.solvd.warehouseProject.models;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@XmlRootElement (name = "warehouse")
+@XmlType(propOrder = { "name", "totalCapacity", "availableCapacity", "nextWarehouse", "daysToNextWarehouse"})
 public class Warehouse extends AbstractEntity{
     private String name;
     private Double totalCapacity;
@@ -32,7 +38,8 @@ public class Warehouse extends AbstractEntity{
         this.nextWarehouse = nextWarehouse;
         this.daysToNextWarehouse = daysToNextWarehouse;
     }
-
+    
+    @XmlElement(name="name")
     public String getName() {
         return name;
     }
@@ -41,6 +48,7 @@ public class Warehouse extends AbstractEntity{
         this.name = name;
     }
     
+    @XmlElement(name="total_capacity")
     @JsonIgnore
     public Double getTotalCapacity() {
 		return totalCapacity;
@@ -50,6 +58,7 @@ public class Warehouse extends AbstractEntity{
 		this.totalCapacity = totalCapacity;
 	}
 	
+	 @XmlElement(name="available_capacity")
 	@JsonIgnore
     public Double getAvailableCapacity() {
         return availableCapacity;
@@ -58,7 +67,8 @@ public class Warehouse extends AbstractEntity{
     public void setAvailableCapacity(Double availableCapacity) {
         this.availableCapacity = availableCapacity;
     }
-
+    
+    @XmlElement(name="next_warehouse")
     @JsonIgnore
     public Warehouse getNextWarehouse() {
 		return nextWarehouse;
@@ -68,6 +78,7 @@ public class Warehouse extends AbstractEntity{
 		this.nextWarehouse = nextWarehouse;
 	}
 	
+	 @XmlElement(name="days_to_next_warehouse")
 	@JsonIgnore
 	public Integer getDaysToNextWarehouse() {
 		return daysToNextWarehouse;
@@ -75,6 +86,13 @@ public class Warehouse extends AbstractEntity{
 
 	public void setDaysToNextWarehouse(Integer daysToNextWarehouse) {
 		this.daysToNextWarehouse = daysToNextWarehouse;
+	}
+
+	@Override
+	public String toString() {
+		return "Warehouse [name=" + name + ", totalCapacity=" + totalCapacity + ", availableCapacity="
+				+ availableCapacity + ", nextWarehouse=" + nextWarehouse + ", daysToNextWarehouse="
+				+ daysToNextWarehouse + "]";
 	}
 
 }

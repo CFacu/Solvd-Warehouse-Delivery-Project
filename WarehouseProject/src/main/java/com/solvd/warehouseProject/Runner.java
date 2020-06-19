@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import com.solvd.warehouseProject.exceptions.OrderVolumeExceededException;
 import com.solvd.warehouseProject.models.*;
+import com.solvd.warehouseProject.parsers.JaxbParser;
 import com.solvd.warehouseProject.parsers.JsonParser;
 import com.solvd.warehouseProject.services.*;
 
@@ -17,8 +18,31 @@ public class Runner {
 	private final static Logger LOGGER = LogManager.getLogger(Runner.class);
 
 	public static void main(String[] args) {
+		
+		Company company = JaxbParser.jabxXmlToObject(Company.class, "src/main/resources/jaxbxml/company.xml");
+
+		company.setClosestWarehouse(company.getWarehouses().get(0));
+		
+		Warehouse warehouse = company.getWarehouses().get(0).getNextWarehouse();
+		while (warehouse != null) {
+			company.getWarehouses().add(warehouse);
+			warehouse = warehouse.getNextWarehouse();
+		}
+		
+		Truck truck = company.getTrucks().get(0);
+		
+		Order order = truck.getOrders().get(0);
+		
+		order.getOrderDetails().forEach(od -> od.calculateSubtotalPrice());
+		order.getOrderDetails().forEach(od -> od.calculateSubtotalVolume());
+		order.calculateDaysUntilDueDate();
+		
+		order.getOrderDetails().forEach(od -> od.setVolumeToDeliver(od.getSubtotalVolume()));
+		
+		company.deliverOrder(truck, order);
+		
 //		//creating company
-		Company company = new Company("The Food Company");
+		/*Company company = new Company("The Food Company");
 		CompanyService companyService = new CompanyService();
 		companyService.insert(company);
 //
@@ -121,7 +145,7 @@ public class Runner {
 		List<Deposit> deposits = company.deliverOrder(truckA, orderA);
 		LOGGER.info("End of delivery");
 //
-		deposits.forEach(dep -> LOGGER.info(dep));
+		deposits.forEach(dep -> LOGGER.info(dep));*/
 //
 //		//------- JSON OUTPUT ---------
 //		JsonParser.objectListToJson(deposits, "src/main/resources/deposits-output.json");

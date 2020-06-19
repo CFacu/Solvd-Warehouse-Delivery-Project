@@ -1,0 +1,116 @@
+<company>
+    <name>The Food Company</name>
+    <trucks>
+        <truck>
+            <capacity>5000.00</capacity>
+            <drivers>
+                <driver>
+                    <first_name>Juan</first_name>
+                    <last_name>Martinez</last_name>
+                    <age>36</age>
+                    <birthday>1984-03-12</birthday>
+                    <phones>
+                        <phones>
+                            <number>+541187512457</number>
+                        </phones>
+                    </phones>
+                </driver>
+            </drivers>
+            <orders>
+                <order>
+                    <date>2020-06-12</date>
+                    <order_details>
+                        <order_detail>
+                            <product>
+                                <name>Rice</name>
+                                <description>White refined rice</description>
+                                <volume>0.5</volume>
+                                <due_date>2020-06-17</due_date>
+                                <price>2.50</price>
+                                <category>
+                                    <name>Food</name>
+                                    <description>All edible products</description>
+                                </category>
+                            </product>
+                            <quantity>2400</quantity>
+                        </order_detail>
+                        <order_detail>
+                            <product>
+                                <name>Flour</name>
+                                <description>White refined flour</description>
+                                <volume>0.3</volume>
+                                <due_date>2020-06-16</due_date>
+                                <price>2.25</price>
+                                <category>
+                                    <name>Food</name>
+                                    <description>All edible products</description>
+                                </category>
+                            </product>
+                            <quantity>2500</quantity>
+                        </order_detail>
+                        <order_detail>
+                            <product>
+                                <name>Oatmeal</name>
+                                <description>Processed oatmeal</description>
+                                <volume>0.6</volume>
+                                <due_date>2020-06-20</due_date>
+                                <price>5.0</price>
+                                <category>
+                                    <name>Food</name>
+                                    <description>All edible products</description>
+                                </category>
+                            </product>
+                            <quantity>1800</quantity>
+                        </order_detail>
+                        <order_detail>
+                            <product>
+                                <name>Sugar</name>
+                                <description>Refined sugar</description>
+                                <volume>1.5</volume>
+                                <due_date>2020-06-25</due_date>
+                                <price>4.5</price>
+                                <category>
+                                    <name>Food</name>
+                                    <description>All edible products</description>
+                                </category>
+                            </product>
+                            <quantity>800</quantity>
+                        </order_detail>
+                    </order_details>
+                </order>
+            </orders>
+        </truck>
+    </trucks>
+    <warehouses>
+        <warehouse>
+            <name>Warehouse A</name>
+            <total_capacity>1000</total_capacity>
+            <available_capacity>800</available_capacity>
+            <next_warehouse>
+                <name>Warehouse B</name>
+                <total_capacity>900</total_capacity>
+                <available_capacity>700</available_capacity>
+                <next_warehouse>
+                    <name>Warehouse C</name>
+                    <total_capacity>1500</total_capacity>
+                    <available_capacity>1300</available_capacity>
+                    <next_warehouse>
+                        <name>Warehouse D</name>
+                        <total_capacity>1400</total_capacity>
+                        <available_capacity>1200</available_capacity>
+                        <next_warehouse>
+                            <name>Warehouse E</name>
+                            <total_capacity>1200</total_capacity>
+                            <available_capacity>1000</available_capacity>
+                        </next_warehouse>
+                        <days_to_next_warehouse>3</days_to_next_warehouse>
+                    </next_warehouse>
+                    <days_to_next_warehouse>5</days_to_next_warehouse>
+                </next_warehouse>
+                <days_to_next_warehouse>4</days_to_next_warehouse>
+            </next_warehouse>
+            <days_to_next_warehouse>2</days_to_next_warehouse>
+        </warehouse>
+    </warehouses>
+    <days_to_closest_warehouse>3</days_to_closest_warehouse>
+</company>

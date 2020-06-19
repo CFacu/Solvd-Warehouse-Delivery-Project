@@ -5,6 +5,13 @@ import com.solvd.warehouseProject.exceptions.OrderVolumeExceededException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+@XmlRootElement (name = "truck")
+@XmlType(propOrder = { "capacity", "drivers", "orders"})
 public class Truck extends AbstractEntity{
     private Double capacity;
     private List<Driver> drivers;
@@ -26,7 +33,8 @@ public class Truck extends AbstractEntity{
         this.drivers = drivers;
         this.orders = orders;
     }
-
+    
+    @XmlElement(name="capacity")
     public Double getCapacity() {
         return capacity;
     }
@@ -34,7 +42,9 @@ public class Truck extends AbstractEntity{
     public void setCapacity(Double capacity) {
         this.capacity = capacity;
     }
-
+    
+    @XmlElementWrapper(name="drivers")
+    @XmlElement(name="driver")
     public List<Driver> getDrivers() {
         return drivers;
     }
@@ -42,7 +52,9 @@ public class Truck extends AbstractEntity{
     public void setDrivers(List<Driver> drivers) {
         this.drivers = drivers;
     }
-
+    
+    @XmlElementWrapper(name="orders")
+    @XmlElement(name="order")
     public List<Order> getOrders() {
         return orders;
     }

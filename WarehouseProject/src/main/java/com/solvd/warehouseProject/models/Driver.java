@@ -3,6 +3,18 @@ package com.solvd.warehouseProject.models;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.solvd.warehouseProject.parsers.LocalDateAdapter;
+
+
+
+@XmlRootElement (name = "driver")
+@XmlType(propOrder = { "firstName", "lastName", "age", "birthday", "phones" })
 public class Driver extends AbstractEntity{
     private String firstName;
     private String lastName;
@@ -20,7 +32,8 @@ public class Driver extends AbstractEntity{
         this.birthday = birthday;
         this.phones = phones;
     }
-
+    
+    @XmlElement(name="first_name")
     public String getFirstName() {
 		return firstName;
 	}
@@ -28,7 +41,8 @@ public class Driver extends AbstractEntity{
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
+	
+	@XmlElement(name="last_name")
 	public String getLastName() {
 		return lastName;
 	}
@@ -36,7 +50,8 @@ public class Driver extends AbstractEntity{
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
+	
+	@XmlElement(name="age")
     public Integer getAge() {
         return age;
     }
@@ -44,7 +59,9 @@ public class Driver extends AbstractEntity{
     public void setAge(Integer age) {
         this.age = age;
     }
-
+    
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    @XmlElement(name="birthday")
     public LocalDate getBirthday() {
         return birthday;
     }
@@ -52,7 +69,9 @@ public class Driver extends AbstractEntity{
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
-
+    
+    @XmlElementWrapper(name="phones")
+    @XmlElement(name="phone")
     public List<Phone> getPhones() {
         return phones;
     }
