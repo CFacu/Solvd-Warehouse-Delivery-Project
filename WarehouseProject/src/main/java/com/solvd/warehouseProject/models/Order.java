@@ -6,6 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import com.solvd.warehouseProject.parsers.LocalDateAdapter;
+
+@XmlRootElement (name = "order")
+@XmlType(propOrder = { "date", "orderDetails"})
 public class Order extends AbstractEntity{
     private LocalDate date;
     private List<OrderDetail> orderDetails;
@@ -22,7 +33,9 @@ public class Order extends AbstractEntity{
         this.date = date;
         this.orderDetails = orderDetails;
     }
-
+    
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    @XmlElement(name="date")
     public LocalDate getDate() {
         return date;
     }
@@ -30,7 +43,9 @@ public class Order extends AbstractEntity{
     public void setDate(LocalDate date) {
         this.date = date;
     }
-
+    
+    @XmlElementWrapper(name="order_details")
+    @XmlElement(name="order_detail")
     public List<OrderDetail> getOrderDetails() {
         return orderDetails;
     }
@@ -39,6 +54,7 @@ public class Order extends AbstractEntity{
         this.orderDetails = orderDetails;
     }
 
+    @XmlTransient
     public Double getTotalVolume() {
         return totalVolume;
     }
@@ -46,7 +62,8 @@ public class Order extends AbstractEntity{
     public void setTotalVolume(Double totalVolume) {
         this.totalVolume = totalVolume;
     }
-
+    
+    @XmlTransient
     public Double getTotalPrice() {
         return totalPrice;
     }
@@ -70,6 +87,10 @@ public class Order extends AbstractEntity{
     public void addOrderDetail (OrderDetail orderDetail) { //any controls that need to be added?
     	orderDetail.getProduct().setDaysUntilDueDate(new Long(ChronoUnit.DAYS.between(this.getDate(), orderDetail.getProduct().getDueDate())).intValue());
     	this.getOrderDetails().add(orderDetail);
+    }
+    
+    public void calculateDaysUntilDueDate () {
+    	this.getOrderDetails().forEach(od -> od.getProduct().setDaysUntilDueDate(new Long(ChronoUnit.DAYS.between(this.getDate(), od.getProduct().getDueDate())).intValue()));
     }
     
     public List<OrderDetail> sortOrderDetails () { 

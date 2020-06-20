@@ -4,10 +4,17 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+
 import com.solvd.warehouseProject.services.DepositService;
 import com.solvd.warehouseProject.services.WarehouseService;
 
-//added days to closest warehouse
+@XmlRootElement (name = "company")
+@XmlType(propOrder = { "name", "trucks", "warehouses", "daysToClosestWarehouse" })
 public class Company extends AbstractEntity{
     private String name;
     private List<Truck> trucks;
@@ -30,7 +37,8 @@ public class Company extends AbstractEntity{
         this.name = name;
         this.warehouses = warehouses;
     }
-
+    
+    @XmlElement (name= "name")
     public String getName() {
         return name;
     }
@@ -38,7 +46,9 @@ public class Company extends AbstractEntity{
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    @XmlElementWrapper(name="trucks")
+    @XmlElement(name="truck")
 	public List<Truck> getTrucks() {
 		return trucks;
 	}
@@ -46,7 +56,9 @@ public class Company extends AbstractEntity{
 	public void setTrucks(List<Truck> trucks) {
 		this.trucks = trucks;
 	}
-
+	
+	@XmlElementWrapper(name="warehouses")
+    @XmlElement(name="warehouse")
     public List<Warehouse> getWarehouses() {
         return warehouses;
     }
@@ -55,7 +67,7 @@ public class Company extends AbstractEntity{
         this.warehouses = warehouses;
     }
 
-
+    @XmlTransient
     public Warehouse getClosestWarehouse() {
 		return closestWarehouse;
 	}
@@ -63,7 +75,8 @@ public class Company extends AbstractEntity{
 	public void setClosestWarehouse(Warehouse closestWarehouse) {
 		this.closestWarehouse = closestWarehouse;
 	}
-
+	
+	@XmlElement (name= "days_to_closest_warehouse")
 	public Integer getDaysToClosestWarehouse() {
 		return daysToClosestWarehouse;
 	}
@@ -118,7 +131,7 @@ public class Company extends AbstractEntity{
         		LOGGER.info("Money lost: $"+moneyLost);
         	}
         }
-        deposits.forEach(dep -> depositService.insert(dep));
+        deposits.forEach(depositService::insert);
         return deposits;
 	}
 	

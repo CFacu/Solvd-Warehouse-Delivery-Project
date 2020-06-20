@@ -19,13 +19,13 @@
     <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
         <![CDATA[
             INSERT INTO Products (name, description, volume, due_date, price, product_categories_id)
-            VALUES (#{name},#{description},#{volume},#{dueDate},#{price}, #{category.id})
+            VALUES (#{name},#{description},#{volume},#{dueDate},#{price}, #{productCategory.id})
         ]]>
     </insert>
     <update id="update">
         <![CDATA[
             UPDATE Products
-            SET name = #{name}, description = #{description}, volume = #{volume}, due_date = ${dueDate}, price = #{price}, product_categories_id = #{category.id} WHERE id = #{id}
+            SET name = #{name}, description = #{description}, volume = #{volume}, due_date = ${dueDate}, price = #{price}, product_categories_id = #{productCategory.id} WHERE id = #{id}
         ]]>
     </update>
     <delete id="delete">

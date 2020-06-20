@@ -2,29 +2,39 @@ package com.solvd.warehouseProject.models;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.solvd.warehouseProject.parsers.LocalDateAdapter;
+
+@XmlRootElement (name = "product")
+@XmlType(propOrder = { "name", "description", "volume", "dueDate", "price", "productCategory"})
 public class Product extends AbstractEntity{
     private String name;
     private String description;
     private Double volume;
     private LocalDate dueDate;
     private Double price;
-    private ProductCategory category;
+    private ProductCategory productCategory;
     private Integer daysUntilDueDate;
 
     public Product() {
     }
 
-    public Product(String name, String description, Double volume, LocalDate dueDate, Double price, ProductCategory category) {
+    public Product(String name, String description, Double volume, LocalDate dueDate, Double price, ProductCategory productCategory) {
         this.name = name;
         this.description = description;
         this.volume = volume;
         this.dueDate = dueDate;
         this.price = price;
-        this.category = category;
+        this.productCategory = productCategory;
     }
-
+    
+    @XmlElement(name="name")
     public String getName() {
         return name;
     }
@@ -33,6 +43,7 @@ public class Product extends AbstractEntity{
         this.name = name;
     }
     
+    @XmlElement(name="description")
     @JsonIgnore
     public String getDescription() {
         return description;
@@ -42,6 +53,7 @@ public class Product extends AbstractEntity{
         this.description = description;
     }
     
+    @XmlElement(name="volume")
     @JsonIgnore
     public Double getVolume() {
         return volume;
@@ -51,6 +63,8 @@ public class Product extends AbstractEntity{
         this.volume = volume;
     }
     
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    @XmlElement(name="due_date")
     @JsonIgnore
     public LocalDate getDueDate() {
         return dueDate;
@@ -60,6 +74,7 @@ public class Product extends AbstractEntity{
         this.dueDate = dueDate;
     }
     
+    @XmlElement(name="price")
     @JsonIgnore
     public Double getPrice() {
         return price;
@@ -69,15 +84,17 @@ public class Product extends AbstractEntity{
         this.price = price;
     }
     
+    @XmlElement(name="category")
     @JsonIgnore
     public ProductCategory getProductCategory() {
-        return category;
+        return productCategory;
     }
 
-	public void setCategory(ProductCategory category) {
-		this.category = category;
+	public void setProductCategory(ProductCategory productCategory) {
+		this.productCategory = productCategory;
 	}
 	
+	@XmlTransient
 	@JsonIgnore
 	public Integer getDaysUntilDueDate() {
 		return daysUntilDueDate;

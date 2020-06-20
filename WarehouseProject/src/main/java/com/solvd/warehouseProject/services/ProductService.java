@@ -5,7 +5,6 @@ import java.util.List;
 import com.solvd.warehouseProject.connection.MyConnectionFactory;
 import com.solvd.warehouseProject.daos.IProductDAO;
 import com.solvd.warehouseProject.models.Product;
-import com.solvd.warehouseProject.models.ProductCategory;
 
 public class ProductService {
 
@@ -19,7 +18,7 @@ public class ProductService {
 	
 	public Product get(Long id){
 		Product product = productDAO.get(id);
-		product.setCategory(categoryService.getByProductId(product.getId()));
+		product.setProductCategory(categoryService.getByProductId(product.getId()));
 		return product;
 	}
 	
@@ -29,7 +28,7 @@ public class ProductService {
 
 	public List<Product> getAll() {
 		List<Product> products = productDAO.getAll();
-		products.forEach(x -> x.setCategory(categoryService.getByProductId(x.getId())));
+		products.forEach(x -> x.setProductCategory(categoryService.getByProductId(x.getId())));
 		return products;
 	}
 
@@ -43,7 +42,7 @@ public class ProductService {
 
 	public Product getByOrderDetailId(Long id){
 		Product product = productDAO.getByOrderDetailId(id);
-		product.setCategory(categoryService.getByProductId(product.getId()));
+		product.setProductCategory(categoryService.getByProductId(product.getId()));
 		return product;
 	}
 

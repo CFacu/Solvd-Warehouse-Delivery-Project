@@ -1,8 +1,11 @@
 package com.solvd.warehouseProject.models;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement (name = "phone")
 public class Phone extends AbstractEntity{
     private String number;
-    private PhoneType type;
 
     public Phone() {
     }
@@ -10,7 +13,8 @@ public class Phone extends AbstractEntity{
     public Phone(String number) {
         this.number = number;
     }
-
+    
+    @XmlElement(name="number")
     public String getNumber() {
         return number;
     }
@@ -18,13 +22,5 @@ public class Phone extends AbstractEntity{
     public void setNumber(String number) {
         this.number = number;
     }
-
-	public PhoneType getType() {
-		return type;
-	}
-
-	public void setType(PhoneType type) {
-		this.type = type;
-	}
 
 }
