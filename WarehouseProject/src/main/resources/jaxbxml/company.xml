@@ -102,15 +102,15 @@
                             <name>Warehouse E</name>
                             <total_capacity>1200</total_capacity>
                             <available_capacity>1000</available_capacity>
+                            <days_to_get_to_warehouse>2</days_to_get_to_warehouse>
                         </next_warehouse>
-                        <days_to_next_warehouse>3</days_to_next_warehouse>
+                        <days_to_get_to_warehouse>3</days_to_get_to_warehouse>
                     </next_warehouse>
-                    <days_to_next_warehouse>5</days_to_next_warehouse>
+                    <days_to_get_to_warehouse>5</days_to_get_to_warehouse>
                 </next_warehouse>
-                <days_to_next_warehouse>4</days_to_next_warehouse>
+                <days_to_get_to_warehouse>4</days_to_get_to_warehouse>
             </next_warehouse>
-            <days_to_next_warehouse>2</days_to_next_warehouse>
+            <days_to_get_to_warehouse>2</days_to_get_to_warehouse>
         </warehouse>
     </warehouses>
-    <days_to_closest_warehouse>3</days_to_closest_warehouse>
 </company>

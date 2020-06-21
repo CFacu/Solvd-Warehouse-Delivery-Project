@@ -15,10 +15,8 @@ public class Runner {
 
 		
 		Company company = JaxbParser.jaxbXmlToObject(Company.class, "src/main/resources/jaxbxml/company.xml");
-
-		company.setClosestWarehouse(company.getWarehouses().get(0));
 		
-		Warehouse warehouse = company.getWarehouses().get(0).getNextWarehouse();
+		Warehouse warehouse = company.getClosestWarehouse().getNextWarehouse();
 		while (warehouse != null) {
 			company.getWarehouses().add(warehouse);
 			warehouse = warehouse.getNextWarehouse();

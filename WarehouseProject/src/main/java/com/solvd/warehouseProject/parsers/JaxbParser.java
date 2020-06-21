@@ -30,7 +30,7 @@ private final static Logger LOGGER = LogManager.getLogger(JaxbParser.class);
 		try {
 			JAXBContext jaxbContext = JAXBContext.newInstance(genericClass);
 			Marshaller marshaller = jaxbContext.createMarshaller();
-			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); //output format with linefeeds and indentation
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); //output format with line feeds and indentation
 			marshaller.marshal(t, new File(outputFilePath));
 		} catch (JAXBException e) {
 			LOGGER.error(e);

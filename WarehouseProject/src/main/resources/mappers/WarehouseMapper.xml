@@ -8,7 +8,7 @@
         <result property="name" column="name"/>
         <result property="totalCapacity" column="total_capacity"/>
         <result property="availableCapacity" column="available_capacity"/>
-        <result property="daysToNextWarehouse" column="days_to_next_warehouse"/>
+        <result property="daysToGetToWarehouse" column="days_to_get_to_warehouse"/>
     </resultMap>
     <select id="get" resultMap="WarehouseResultMap">
         <![CDATA[
@@ -17,15 +17,15 @@
     </select>
     <insert id = "insert" useGeneratedKeys = "true" keyProperty= "id">
         <![CDATA[
-            INSERT INTO Warehouses (name, total_capacity, available_capacity, days_to_next_warehouse, next_warehouses_id)
-            VALUES (#{name}, #{totalCapacity}, #{availableCapacity}, #{daysToNextWarehouse}, #{nextWarehouse.id})
+            INSERT INTO Warehouses (name, total_capacity, available_capacity, days_to_get_to_warehouse, next_warehouses_id)
+            VALUES (#{name}, #{totalCapacity}, #{availableCapacity}, #{daysToGetToWarehouse}, #{nextWarehouse.id})
         ]]>
     </insert>
     <update id="update">
         <![CDATA[
             UPDATE Warehouses
             SET name = #{name}, total_capacity = #{totalCapacity}, available_capacity = #{availableCapacity},
-            days_to_next_warehouse = #{daysToNextWarehouse}, next_warehouses_id = #{nextWarehouse.id} WHERE id = #{id}
+            days_to_get_to_warehouse = #{daysToGetToWarehouse}, next_warehouses_id = #{nextWarehouse.id} WHERE id = #{id}
         ]]>
     </update>
     <delete id="delete">
