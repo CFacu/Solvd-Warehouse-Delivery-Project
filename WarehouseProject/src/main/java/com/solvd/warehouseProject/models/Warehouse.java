@@ -7,13 +7,13 @@ import javax.xml.bind.annotation.XmlType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @XmlRootElement (name = "warehouse")
-@XmlType(propOrder = { "name", "totalCapacity", "availableCapacity", "nextWarehouse", "daysToNextWarehouse"})
+@XmlType(propOrder = { "name", "totalCapacity", "availableCapacity", "nextWarehouse", "daysToGetToWarehouse"})
 public class Warehouse extends AbstractEntity{
     private String name;
     private Double totalCapacity;
     private Double availableCapacity;
     private Warehouse nextWarehouse;
-    private Integer daysToNextWarehouse;
+    private Integer daysToGetToWarehouse;
 
     public Warehouse() {
     }
@@ -31,12 +31,12 @@ public class Warehouse extends AbstractEntity{
     }
     
     
-    public Warehouse(String name, Double totalCapacity, Double availableCapacity, Warehouse nextWarehouse, Integer daysToNextWarehouse){
+    public Warehouse(String name, Double totalCapacity, Double availableCapacity, Warehouse nextWarehouse, Integer daysToGetToWarehouse){
         this.name = name;
         this.totalCapacity = totalCapacity;
         this.availableCapacity = availableCapacity;
         this.nextWarehouse = nextWarehouse;
-        this.daysToNextWarehouse = daysToNextWarehouse;
+        this.daysToGetToWarehouse = daysToGetToWarehouse;
     }
     
     @XmlElement(name="name")
@@ -78,21 +78,21 @@ public class Warehouse extends AbstractEntity{
 		this.nextWarehouse = nextWarehouse;
 	}
 	
-	 @XmlElement(name="days_to_next_warehouse")
+	 @XmlElement(name="days_to_get_to_warehouse")
 	@JsonIgnore
-	public Integer getDaysToNextWarehouse() {
-		return daysToNextWarehouse;
+	public Integer getDaysToGetToWarehouse() {
+		return daysToGetToWarehouse;
 	}
 
-	public void setDaysToNextWarehouse(Integer daysToNextWarehouse) {
-		this.daysToNextWarehouse = daysToNextWarehouse;
+	public void setDaysToGetToWarehouse(Integer daysToGetToWarehouse) {
+		this.daysToGetToWarehouse = daysToGetToWarehouse;
 	}
 
 	@Override
 	public String toString() {
 		return "Warehouse [name=" + name + ", totalCapacity=" + totalCapacity + ", availableCapacity="
-				+ availableCapacity + ", nextWarehouse=" + nextWarehouse + ", daysToNextWarehouse="
-				+ daysToNextWarehouse + "]";
+				+ availableCapacity + ", nextWarehouse=" + nextWarehouse + ", daysToGetToWarehouse="
+				+ daysToGetToWarehouse + "]";
 	}
 
 }

@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.solvd.warehouseProject.daos.IDepositDAO">
     <resultMap id="DepositResultMap" type="Deposit" autoMapping="false">
+        <id property="id" column="id"/>
         <result property="volumeDeposited" column="volume"/>
         <association property="warehouse" resultMap="com.solvd.warehouseProject.daos.IWarehouseDAO.WarehouseResultMap"/>
         <association property="orderDetail" resultMap="com.solvd.warehouseProject.daos.IOrderDetailDAO.OrderDetailResultMap"/>

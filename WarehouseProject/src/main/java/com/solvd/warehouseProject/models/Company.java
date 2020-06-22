@@ -14,13 +14,11 @@ import com.solvd.warehouseProject.services.DepositService;
 import com.solvd.warehouseProject.services.WarehouseService;
 
 @XmlRootElement (name = "company")
-@XmlType(propOrder = { "name", "trucks", "warehouses", "daysToClosestWarehouse" })
+@XmlType(propOrder = { "name", "trucks", "warehouses" })
 public class Company extends AbstractEntity{
     private String name;
     private List<Truck> trucks;
     private List<Warehouse> warehouses;
-    private Warehouse closestWarehouse;
-    private Integer daysToClosestWarehouse;
 
     public Company() {
     	this.trucks = new ArrayList<Truck>();
@@ -69,20 +67,7 @@ public class Company extends AbstractEntity{
 
     @XmlTransient
     public Warehouse getClosestWarehouse() {
-		return closestWarehouse;
-	}
-
-	public void setClosestWarehouse(Warehouse closestWarehouse) {
-		this.closestWarehouse = closestWarehouse;
-	}
-	
-	@XmlElement (name= "days_to_closest_warehouse")
-	public Integer getDaysToClosestWarehouse() {
-		return daysToClosestWarehouse;
-	}
-
-	public void setDaysToClosestWarehouse(Integer daysToClosestWarehouse) {
-		this.daysToClosestWarehouse = daysToClosestWarehouse;
+		return warehouses.get(0);
 	}
 
 	public List<Deposit> deliverOrder(Truck truck, Order order) {
@@ -91,7 +76,7 @@ public class Company extends AbstractEntity{
         if (trucks.contains(truck)) {
         	if (truck.getOrders().contains(order)) {
                 Warehouse warehouse = this.getClosestWarehouse();
-                Integer daysPassed = this.getDaysToClosestWarehouse();
+                Integer daysPassed = warehouse.getDaysToGetToWarehouse();
                 WarehouseService warehouseService = new WarehouseService();
                 Double moneyLost = 0.0;
                 LinkedList<OrderDetail> toDeliver = new LinkedList<OrderDetail>(order.sortOrderDetails());    
@@ -123,8 +108,8 @@ public class Company extends AbstractEntity{
 	                			orderDetail = toDeliver.poll();
 	                		}
 	                	} else {
-	                		daysPassed += warehouse.getDaysToNextWarehouse();
-	                		warehouse = warehouse.getNextWarehouse();
+	                		warehouse = warehouse.getNextWarehouse();	                		
+	                		daysPassed += warehouse.getDaysToGetToWarehouse();
 	                	}
                 	}
                 }

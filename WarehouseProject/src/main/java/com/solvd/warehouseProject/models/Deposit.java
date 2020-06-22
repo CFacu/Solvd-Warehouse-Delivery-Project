@@ -1,6 +1,6 @@
 package com.solvd.warehouseProject.models;
 
-public class Deposit {
+public class Deposit extends AbstractEntity{
 	private Warehouse warehouse;
 	private OrderDetail orderDetail;
 	private Double volumeDeposited;
