@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @XmlRootElement (name = "warehouse")
 @XmlType(propOrder = { "name", "totalCapacity", "availableCapacity", "nextWarehouse", "daysToGetToWarehouse"})
@@ -39,6 +40,7 @@ public class Warehouse extends AbstractEntity{
         this.daysToGetToWarehouse = daysToGetToWarehouse;
     }
     
+    @JsonProperty("warehouse")
     @XmlElement(name="name")
     public String getName() {
         return name;

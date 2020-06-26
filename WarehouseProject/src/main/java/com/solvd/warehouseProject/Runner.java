@@ -32,7 +32,7 @@ public class Runner {
 		
 		order.getOrderDetails().forEach(od -> od.setVolumeToDeliver(od.getSubtotalVolume()));
 
-		InsertData.insertCompanyIntoDB(company);
+		//InsertData.insertCompanyIntoDB(company);
 		company.deliverOrder(truck, order);
 		}
 }

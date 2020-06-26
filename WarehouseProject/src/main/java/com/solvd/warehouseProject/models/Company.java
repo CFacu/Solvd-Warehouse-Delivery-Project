@@ -1,5 +1,7 @@
 package com.solvd.warehouseProject.models;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -10,6 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import com.solvd.warehouseProject.parsers.JsonParser;
 import com.solvd.warehouseProject.services.DepositService;
 import com.solvd.warehouseProject.services.WarehouseService;
 
@@ -69,15 +72,19 @@ public class Company extends AbstractEntity{
     public Warehouse getClosestWarehouse() {
 		return warehouses.get(0);
 	}
+    
+    
+
+
 
 	public List<Deposit> deliverOrder(Truck truck, Order order) {
 		List<Deposit> deposits = new ArrayList<Deposit>();
-		DepositService depositService = new DepositService();
+		//DepositService depositService = new DepositService();
         if (trucks.contains(truck)) {
         	if (truck.getOrders().contains(order)) {
                 Warehouse warehouse = this.getClosestWarehouse();
                 Integer daysPassed = warehouse.getDaysToGetToWarehouse();
-                WarehouseService warehouseService = new WarehouseService();
+                //WarehouseService warehouseService = new WarehouseService();
                 Double moneyLost = 0.0;
                 LinkedList<OrderDetail> toDeliver = new LinkedList<OrderDetail>(order.sortOrderDetails());    
                 OrderDetail orderDetail = toDeliver.poll();
@@ -96,12 +103,12 @@ public class Company extends AbstractEntity{
 	                			Deposit deposit = new Deposit (warehouse, orderDetail, warehouse.getAvailableCapacity());
 	                			deposits.add(deposit);
 	                			warehouse.setAvailableCapacity(0.0);
-	                			warehouseService.updateAvailableCapacity(warehouse);
+	                			//warehouseService.updateAvailableCapacity(warehouse);
 	                		} else {
 	                			LOGGER.info((orderDetail.getVolumeToDeliver())+" m3 of the Product: "+orderDetail.getProduct().getName()+ 
 	                    				" have been deposited in "+warehouse.getName());
 	                			warehouse.setAvailableCapacity(warehouse.getAvailableCapacity()-orderDetail.getVolumeToDeliver());
-	                			warehouseService.updateAvailableCapacity(warehouse);
+	                			//warehouseService.updateAvailableCapacity(warehouse);
 	                			Deposit deposit = new Deposit (warehouse, orderDetail, orderDetail.getVolumeToDeliver());
 	                			deposits.add(deposit);
 	                			orderDetail.setVolumeToDeliver(0.0);
@@ -116,7 +123,13 @@ public class Company extends AbstractEntity{
         		LOGGER.info("Money lost: $"+moneyLost);
         	}
         }
-        deposits.forEach(depositService::insert);
+        //deposits.forEach(depositService::insert);
+        //JsonParser.objectListToJson(deposits, "src/main/resources/deposits-output.json"); 
+        try {
+			JsonParser.jsonOutput(deposits, "src/main/resources/deposits-output2.json");
+		} catch (IOException e) {
+			LOGGER.error(e);
+		}
         return deposits;
 	}
 	

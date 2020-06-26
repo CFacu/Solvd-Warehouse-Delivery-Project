@@ -1,0 +1,21 @@
+{"warehouse":"Warehouse A"}
+ 
+ {"product":{"name":"Flour"}}
+ 
+ 750.0
+ 
+ {"product":{"name":"Oatmeal"}}
+ 
+ 50.0
+ 
+ {"warehouse":"Warehouse B"}
+ 
+ {"product":{"name":"Oatmeal"}}
+ 
+ 700.0
+ 
+ {"warehouse":"Warehouse C"}
+ 
+ {"product":{"name":"Sugar"}}
+ 
+ 1200.0
