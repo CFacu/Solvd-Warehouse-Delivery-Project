@@ -56,19 +56,22 @@ public class JsonParser {
     	for (Deposit dep: deposits) {
     		Warehouse warehouse = dep.getWarehouse();
     		if (tmpWarehouse.equals(warehouse)){
-    			try {
+    			try { 
+			    	g.setPrettyPrinter(new MinimalPrettyPrinter("\n \t"));
 					objectMapper.writeValue(g, dep.getOrderDetail());
-					objectMapper.writeValue(g, dep.getVolumeDeposited());
-					//objectMapper.writeValue(g, "volume deposited: "+dep.getVolumeDeposited()); Esto por si se quiere anteponer lo de "volume" y no aparezca solo el numero
+			    	g.setPrettyPrinter(new MinimalPrettyPrinter("\t"));
+					objectMapper.writeValue(g, "volume deposited: " + dep.getVolumeDeposited());
 				} catch (IOException e) {
 					LOGGER.error(e);
 				}
     		} else {
     			try {
+    		    	g.setPrettyPrinter(new MinimalPrettyPrinter("\n \n "));
     				objectMapper.writeValue(g, dep.getWarehouse());
+			    	g.setPrettyPrinter(new MinimalPrettyPrinter("\n \t"));
     				objectMapper.writeValue(g, dep.getOrderDetail());
-					objectMapper.writeValue(g, dep.getVolumeDeposited());
-					//objectMapper.writeValue(g, "volume deposited: "+dep.getVolumeDeposited());
+			    	g.setPrettyPrinter(new MinimalPrettyPrinter("\t"));
+					objectMapper.writeValue(g, "volume deposited: " + dep.getVolumeDeposited());
 				} catch (IOException e) {
 					LOGGER.error(e);
 				}
