@@ -1,5 +1,6 @@
 package com.solvd.warehouseProject.models;
 
+
 public class Deposit extends AbstractEntity{
 	private Warehouse warehouse;
 	private OrderDetail orderDetail;
@@ -12,7 +13,7 @@ public class Deposit extends AbstractEntity{
 		this.orderDetail = orderDetail;
 		this.volumeDeposited = volumeDeposited;
 	}
-
+	
 	public Warehouse getWarehouse() {
 		return warehouse;
 	}
@@ -20,7 +21,7 @@ public class Deposit extends AbstractEntity{
 	public void setWarehouse(Warehouse warehouse) {
 		this.warehouse = warehouse;
 	}
-
+	
 	public OrderDetail getOrderDetail() {
 		return orderDetail;
 	}
@@ -28,7 +29,7 @@ public class Deposit extends AbstractEntity{
 	public void setOrderDetail(OrderDetail orderDetail) {
 		this.orderDetail = orderDetail;
 	}
-
+	
 	public Double getVolumeDeposited() {
 		return volumeDeposited;
 	}
